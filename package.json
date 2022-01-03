@@ -1,0 +1,23 @@
+{
+  "name": "25-Beginner-JavaScript-Project-deas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shinhyojeong/25-Beginner-JavaScript-Project-deas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shinhyojeong/25-Beginner-JavaScript-Project-deas/issues"
+  },
+  "homepage": "https://github.com/Shinhyojeong/25-Beginner-JavaScript-Project-deas#readme",
+  "devDependencies": {
+    "prettier": "2.5.1"
+  }
+}
