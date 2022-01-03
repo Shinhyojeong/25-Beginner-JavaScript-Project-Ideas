@@ -14,10 +14,14 @@ export default function Container({ targetEl, initialState}){
         const {startColor, endColor} = this.state
 
         containerEl.innerHTML = `
-            <span class="container-text">
-                CLICK THE BUTTON BELLOW TO GENERATE A RANDOM GRADIENT<br> HEX COLOR COMBINATION
-                <br>background: linear-gradient(to right, );
-            </span>
+            <div class="container-text">
+                <h1>
+                    CLICK THE BUTTON BELLOW TO GENERATE A RANDOM GRADIENT<br> HEX COLOR COMBINATION
+                </h1>
+                <h2 class="bottom">
+                    background: linear-gradient(to right, ${startColor}, ${endColor});
+                </h2>
+            </div>
         `
         containerEl.style.background = `linear-gradient(to right, ${startColor}, ${endColor})`
     }

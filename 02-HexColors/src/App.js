@@ -4,8 +4,8 @@ import Button from './components/Button.js'
 export default function App ({ targetEl }){
 
     this.state = {
-        startColor : 'red',
-        endColor : 'yellow',
+        startColor : 'white',
+        endColor : 'white',
     }
 
     this.setState = nextState => {
