@@ -6,11 +6,6 @@ export default function Button ({ targetEl, onClick }){
     btnEl.textContent = 'Click Me!'
     targetEl.appendChild(btnEl)
 
-    // const getRandomQuote = async() =>{
-
-    //     return qoute
-    // }
-
     btnEl.addEventListener('click', async() => {
         const qoute =  await request()
         onClick(qoute)
