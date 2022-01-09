@@ -4,6 +4,11 @@ import ReadMessage from "./components/ReadMessage.js";
 export default function App ({
     targetEl
 }){
+    const containerEl = document.createElement('div')
+    containerEl.className = 'container'
+    containerEl.textContent = 'Pass the message'
+    targetEl.append(containerEl)
+
     this.state = {
         message : ''
     }
@@ -14,14 +19,14 @@ export default function App ({
     }
 
     new SendMessage({
-        targetEl,
+        targetEl : containerEl,
         onSendMessage: message => {
             this.setState({ message })
         }
     })
 
     const readMessage = new ReadMessage({
-        targetEl,
+        targetEl : containerEl,
         initialState : this.state.message
     })
 }
