@@ -3,20 +3,17 @@ export default function CountingBtns({
     onCount,
 }){
     const btnContainerEl = document.createElement('div')
-    const increaseBtn = document.createElement('button')
-    const decreaseBtn = document.createElement('button')
-
     btnContainerEl.className = "btn-container"
-    increaseBtn.className = "btn_increase"
-    decreaseBtn.className = "btn_decrease"
 
-    increaseBtn.value = 'increase'
-    decreaseBtn.value = 'decrease'
 
-    increaseBtn.textContent = 'increase'
-    decreaseBtn.textContent = 'decrease'
+    this.render = () => {
+        btnContainerEl.innerHTML = `
+            <button class="btn_decrease" value="decrease">decrease</button>
+            <button class="btn_increase" value="increase">increase</button>
+        `
+    }
 
-    btnContainerEl.append(decreaseBtn, increaseBtn)
+    this.render()
     targetEl.append(btnContainerEl)
 
     btnContainerEl.addEventListener('click', e => {

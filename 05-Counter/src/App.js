@@ -4,23 +4,26 @@ import CountingBtns from './components/CountingBtns.js'
 export default function App({
     targetEl
 }){
+    const containerEl = document.createElement('div')
+    containerEl.className = 'container'
+    targetEl.append(containerEl)
+
     this.state = {
         counter : 0,
     }
 
     this.setState = nextState => {
-        console.log(nextState)
         this.state = nextState
         readNumber.setState(nextState)
     }
 
     const readNumber = new ReadNumber({
-        targetEl,
+        targetEl : containerEl,
         initialState : this.state.counter
     })
 
     new CountingBtns({
-        targetEl,
+        targetEl : containerEl,
         onCount : (btnType) => {
             const { counter } = this.state
 
