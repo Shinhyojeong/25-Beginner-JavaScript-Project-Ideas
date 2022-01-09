@@ -2,8 +2,8 @@ import {request} from '../api/api.js'
 
 export default function Button ({ targetEl, onClick }){
     const btnEl = document.createElement('button')
-    btnEl.className = 'create-quote_btn'
-    btnEl.textContent = 'Click Me!'
+    btnEl.className = 'generate-quote_btn'
+    btnEl.textContent = 'Generate Quote'
     targetEl.appendChild(btnEl)
 
     btnEl.addEventListener('click', async() => {

@@ -1,18 +1,19 @@
 import Button from "./components/Button.js";
-import Container from "./components/Container.js";
+import QuoteBox from "./components/QuoteBox.js";
 
 
 export default function App ({targetEl}){
+
     this.state = {
         quote : null,
     }
 
     this.setState = nextState => {
         this.state = nextState
-        container.setState(nextState)
+        quoteBox.setState(nextState)
     }
 
-    const container = new Container({
+    const quoteBox = new QuoteBox({
         targetEl,
         initialState : this.state,
     })
