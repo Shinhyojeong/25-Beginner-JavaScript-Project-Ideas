@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&family=The+Nautigal&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: radial-gradient(
+    circle,
+    rgba(109, 133, 255, 1) 0%,
+    rgba(189, 70, 252, 1) 100%
+  );
+}
+
+.quote-box {
+  background-color: white;
+  border-radius: 10px;
+  width: 50%;
+  height: 300px;
+  margin: 13% 25% 0 25%;
+  padding: 5% 5%;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 10px #8080802e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+}
+
+.quote {
+  line-height: 32px;
+}
+
+.author {
+  font-family: 'The Nautigal', cursive;
+  margin-top: 30px;
+  font-size: 38px;
+}
+
+.generate-quote_btn {
+  width: 130px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  margin: 20px calc(50% - 65px);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  background-color: #6c4abf;
+  color: white;
+  box-sizing: border-box;
+}
+
+.generate-quote_btn:hover {
+  background-color: #9c82dd;
+}
