@@ -1,4 +1,4 @@
-import { confirmDay, addZero, confirmAmPm, readHours } from '/src/utils/processDayInformation.js'
+import { confirmDay, addZero, confirmAmPm, readHours } from '../utils/processDayInformation.js'
 
 export default function Clock({
     targetEl
