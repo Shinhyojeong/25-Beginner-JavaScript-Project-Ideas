@@ -1,5 +1,5 @@
 import InputInformation from "./components/InputInformation.js"
-import Button from './components/Button.js'
+import Toast from './components/Toast.js'
 
 export default function App({
     targetEl
@@ -9,14 +9,25 @@ export default function App({
     containerEl.innerHTML = '<span class="container-title">Tip Calculator</span>'
     targetEl.append(containerEl)
 
+    this.state = {
+        tip : 0
+    }
+
+    this.setState = nextState => {
+        this.state = nextState
+        toast.setState(nextState)
+    }
+
     new InputInformation({
-        targetEl
+        targetEl,
+        onSubmit: (tip) => {
+            this.setState({ tip })
+            console.log(this.state)
+        }
     })
 
-    new Button({
+    const toast = new Toast({
         targetEl,
-        onClick: () => {
-
-        }
+        initialState : this.state.tip
     })
 }

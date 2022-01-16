@@ -1,35 +1,75 @@
+import Button from './Button.js'
+
 export default function InputInformation({
-    targetEl
+    targetEl,
+    initialState,
+    onSubmit,
 }){
     const inputContainerEl = document.createElement('div')
     inputContainerEl.className = 'container-input'
 
+    this.state = initialState
+
+    this.setState = nextState => {
+        this.state = nextState
+    }
+
+
     this.render = () => {
         inputContainerEl.innerHTML = `
             <hr>
-            <label for="input-bill" class="input-box">
-                <span class="input-title">Bill Amount</span>
-                <input type="number" class="input-info"/>
-            </label>
-            <label for="input-guests" class="input-box">
-                <span class="input-title">Number of Guests</span>
-                <input type="number" class="input-info"/>
-            </label>
-            <label for="input-service" class="input-box">
-                <span class="input-title">Service Quality</span>
-                <select id="input-service" class="input-info">
-                    <option value="">Choose...</option>
-                    <option value="outstanding">30% - Outstanding</option>
-                    <option value="good">20% - Good</option>
-                    <option value="ok">15% - It was ok</option>
-                    <option value="bad">10% - Bad</option>
-                    <option value="terrible">5% - Terrible</option>
-                </select>
-            </label>
+            <form>
+                <div>
+                    <label for ="bill">
+                        <span class="input-title">Bill Amount</span>
+                    </label>
+                    <input type="number" class="input-info bill" id="bill" />
+                </div>
+                <div>
+                    <label for ="guest">
+                        <span class="input-title">Number of Guests</span>
+                    </label>
+                    <input type="number" class="input-info guest" id="guest" />
+                </div>
+                <div>
+                    <label for="service" class="input-box">
+                        <span class="input-title">Service Quality</span>
+                        <select id="service" class="input-info service">
+                            <option value="default">Choose...</option>
+                            <option value="0.3">30% - Outstanding</option>
+                            <option value="0.2">20% - Good</option>
+                            <option value="0.15">15% - It was ok</option>
+                            <option value="0.1">10% - Bad</option>
+                            <option value="0.05">5% - Terrible</option>
+                        </select>
+                    </label>
+                </div>
+            </form>
             <hr>
         `
     }
 
     this.render()
     targetEl.append(inputContainerEl)
+
+
+
+    new Button({
+        targetEl,
+        initialState :'Calculate',
+        onClick : () => {
+            const formData = document.forms[0]
+            const bill = formData.elements[0]
+            const guest = formData.elements[1]
+            const service = formData.elements[2]
+
+            if(service.value === 'default'){ return }
+            const tip = bill.value * guest.value * service.value
+            onSubmit(tip)
+
+            bill.value = ''
+            guest.value = ''
+            service.value = 'default'
+        }
+    })
 }
