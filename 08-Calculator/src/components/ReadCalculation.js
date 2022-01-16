@@ -15,8 +15,9 @@ export default function ReadCalculation ({
     }
 
     this.render = () => {
+        console.log(this.state.calculation)
         calculationContainer.innerHTML = `
-            <span class="calculation-text>${this.state.calculation}</span>
+            <span class="calculation-text">${this.state.calculation}</span>
         `
     }
 

@@ -4,6 +4,11 @@ import ReadCalculation from './components/ReadCalculation.js'
 export default function App ({
     targetEl
 }){
+
+    const containerEl = document.createElement('div')
+    containerEl.className = 'container'
+    targetEl.append(containerEl)
+
     this.state = {
         calculation : 0
     }
@@ -14,14 +19,13 @@ export default function App ({
     }
 
     const readCalculation = new ReadCalculation({
-        targetEl,
+        targetEl : containerEl,
         initialState : this.state.calculation
     })
 
     const calculatorBtns = new CalculatorBtns({
-        targetEl,
+        targetEl : containerEl,
         onClick : (calculation, name) => {
-            console.log(calculation)
 
             let nextCalculation = 0
             try{
