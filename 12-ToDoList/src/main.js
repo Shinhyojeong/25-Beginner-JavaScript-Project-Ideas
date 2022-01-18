@@ -1,6 +1,6 @@
 import App from './App.js'
 
-const targetEl = document.documentElement('#app')
+const targetEl = document.querySelector('#app')
 
 new App({
     targetEl
