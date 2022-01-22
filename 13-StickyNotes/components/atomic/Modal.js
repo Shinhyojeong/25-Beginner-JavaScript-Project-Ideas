@@ -5,18 +5,17 @@ export default function Modal({
     initialState,
     onClose,
 }){
+    this.state = initialState
+
     const modalDIMEl = document.createElement('div')
     const modalContainerEl = document.createElement('div')
-    modalDIMEl.className = 'dim'
+    modalDIMEl.className = this.state.className
     modalContainerEl.className = 'modal-container'
-
-    this.state = initialState
 
     this.setState = nextState => {
         this.state = nextState
         this.render()
     }
-
     this.render = () => {
         const { visible, } = this.state
 

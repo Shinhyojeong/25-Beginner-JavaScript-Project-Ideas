@@ -6,12 +6,13 @@ export default function Button({
     this.state = initialState
 
     const btnEl = document.createElement('div')
-    btnEl.className = this.state.btnClassName
+    btnEl.className = this.state.className
 
     this.render = () => {
-        const { btnClassName, content } = this.state
+        const { className, content } = this.state
+
         btnEl.innerHTML = `
-            <button class='btn' name='${btnClassName}-btn'>${content}</button>
+            <button class='btn' name='${className}-btn'>${content}</button>
         `
     }
 
