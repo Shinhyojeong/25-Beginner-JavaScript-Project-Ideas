@@ -1,4 +1,5 @@
 import Modal from '../atomic/Modal.js'
+import { optimization } from '../../utils/optimization.js'
 
 export default function AddSticky({
     targetEl,
@@ -9,6 +10,8 @@ export default function AddSticky({
     this.state = initialState
 
     this.setState = nextState => {
+        if(optimization(this.state, nextState)){ return }
+
         this.state = nextState
         addStickyModal.setState({
             ...addStickyModal.state,

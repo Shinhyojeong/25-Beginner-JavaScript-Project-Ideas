@@ -1,4 +1,5 @@
 import StickyNote from './StickyNote.js'
+import { optimization } from '../../utils/optimization.js'
 
 export default function StickyNoteList({
     targetEl,
@@ -11,6 +12,8 @@ export default function StickyNoteList({
     stickyNoteListEl.className = 'sticky-note-list'
 
     this.setState = nextState => {
+        if(optimization(this.state, nextState)){ return }
+
         this.state = nextState
         this.render()
     }

@@ -1,4 +1,5 @@
 import Button from './Button.js'
+import { optimization } from '../../utils/optimization.js'
 
 export default function Modal({
     targetEl,
@@ -14,6 +15,8 @@ export default function Modal({
     modalDIMEl.style.display = 'none'
 
     this.setState = nextState => {
+        if(optimization(this.state, nextState)){ return }
+
         this.state = nextState
         this.render()
     }
