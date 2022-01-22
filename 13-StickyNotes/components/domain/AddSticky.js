@@ -10,9 +10,10 @@ export default function AddSticky({
 
     this.setState = nextState => {
         this.state = nextState
-        addStickyModal.setState(
-            this.state
-        )
+        addStickyModal.setState({
+            ...addStickyModal.state,
+            visible : this.state
+        })
     }
 
     const addStickyModal = new Modal({

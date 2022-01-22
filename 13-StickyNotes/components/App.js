@@ -14,9 +14,7 @@ export default function ({
 
     this.setState = nextState => {
         this.state = nextState
-        addStick.setState({
-            visible : this.state.modalVisible
-        }),
+        addStick.setState(this.state.modalVisible),
         stickyNoteList.setState(this.state.stickyList)
     }
 

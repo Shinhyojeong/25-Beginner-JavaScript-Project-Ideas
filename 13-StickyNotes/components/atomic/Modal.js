@@ -11,15 +11,15 @@ export default function Modal({
     const modalContainerEl = document.createElement('div')
     modalDIMEl.className = this.state.className
     modalContainerEl.className = 'modal-container'
+    modalDIMEl.style.display = 'none'
 
     this.setState = nextState => {
         this.state = nextState
         this.render()
     }
-    this.render = () => {
-        const { visible, } = this.state
 
-        modalDIMEl.style.display = visible ? 'block' : 'none'
+    this.render = () => {
+        modalDIMEl.style.display = this.state.visible ? 'block' : 'none'
     }
 
     modalContainerEl.innerHTML = `${this.state.content}`
