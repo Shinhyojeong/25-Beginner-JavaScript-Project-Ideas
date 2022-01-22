@@ -14,6 +14,7 @@ export default function StickyNote({
         targetEl : stickyNoteEl,
         initialState : {
             containerType : 'span',
+            className : 'sticky-note-text',
             content : this.state.note
         }
     })
