@@ -20,8 +20,10 @@ export default function Button({
     targetEl.append(btnEl)
 
     btnEl.addEventListener('click', e => {
-        if(!e.target.value){ return }
+        const { target } = e
 
-        onClick(e)
+        if(!target.value){ return }
+
+        onClick(target)
     })
 }
