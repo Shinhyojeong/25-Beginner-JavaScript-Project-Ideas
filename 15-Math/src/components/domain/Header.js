@@ -4,18 +4,12 @@ import Text from '../atomic/Text.js'
 export default function Header({
     targetEl,
     initialState,
-    // onClick,
+    onClick,
 }){
     const headerEl = document.createElement('div')
     headerEl.className = 'header'
 
     this.state = initialState
-
-    this.setState = nextState => {
-        this.state = nextState
-    }
-
-    const operators = [ 'add', 'subtract', 'multiply', 'divider' ]
 
 
     this.render = () => {
@@ -28,17 +22,18 @@ export default function Header({
             }
         })
 
-        operators?.forEach((operator) => {
+        this.state?.forEach((item) => {
+            const { name, operator } = item
+
             new Button({
                 targetEl : headerEl,
                 initialState : {
-                    content : operator,
-                    className : `${operator}-btn`,
+                    content : name,
+                    className : `${name}-btn`,
                     value : operator,
                 },
-                onClick : () => {
-                    this.setState(operator)
-                    console.log(this.state)
+                onClick : (target) => {
+                    onClick(target.value)
                 }
             })
         })
