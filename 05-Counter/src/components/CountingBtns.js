@@ -4,8 +4,8 @@ export default function CountingBtns({ targetEl, onCount }) {
 
   this.render = () => {
     btnContainerEl.innerHTML = `
-            <button class="btn_decrease" value="decrease">decrease</button>
-            <button class="btn_increase" value="increase">increase</button>
+            <button class="counting-btn decrease" value="decrease">decrease</button>
+            <button class="counting-btn increase" value="increase">increase</button>
         `
   }
 
