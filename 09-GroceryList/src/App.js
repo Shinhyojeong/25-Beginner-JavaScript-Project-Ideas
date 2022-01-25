@@ -3,6 +3,9 @@ import ReadList from './components/ReadList.js'
 import RemoveList from './components/RemoveList.js'
 
 export default function App({ targetEl }) {
+  const containerEl = document.createElement('div')
+  containerEl.className = 'container'
+
   this.state = {
     groceryList: [],
   }
@@ -13,7 +16,7 @@ export default function App({ targetEl }) {
   }
 
   new AddList({
-    targetEl,
+    targetEl: containerEl,
     onSubmit: (value) => {
       this.setState({
         groceryList: [value, ...this.state.groceryList],
@@ -22,7 +25,7 @@ export default function App({ targetEl }) {
   })
 
   new RemoveList({
-    targetEl,
+    targetEl: containerEl,
     onClick: () => {
       this.setState({
         groceryList: [],
@@ -31,7 +34,9 @@ export default function App({ targetEl }) {
   })
 
   const readList = new ReadList({
-    targetEl,
+    targetEl: containerEl,
     initialState: this.state.groceryList,
   })
+
+  targetEl.append(containerEl)
 }
