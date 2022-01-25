@@ -38,7 +38,7 @@ export default function ({ targetEl, onClick }) {
                 <button class="calculator-btn operator" name="operator" value="division">/</button>
             </div>
             <div class="btn-box fifth">
-                <button class="calculator-btn eqaul" name="equal" value="equal">=</button>
+                <button class="calculator-btn equal" name="equal" value="equal">=</button>
             </div>
         `
   }
