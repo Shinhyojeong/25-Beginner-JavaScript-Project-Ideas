@@ -1,24 +1,20 @@
 import Text from '../atomic/Text.js'
 
-export default function StickyNote({
-    targetEl,
-    initialState,
-}){
-    this.state = initialState
+export default function StickyNote({ targetEl, initialState }) {
+  this.state = initialState
 
-    const stickyNoteEl = document.createElement('div')
-    stickyNoteEl.className = 'sticky-note'
-    stickyNoteEl.setAttribute('data-id', this.state.id)
+  const stickyNoteEl = document.createElement('div')
+  stickyNoteEl.className = 'sticky-note'
+  stickyNoteEl.setAttribute('data-id', this.state.id)
 
-    new Text({
-        targetEl : stickyNoteEl,
-        initialState : {
-            containerType : 'span',
-            className : 'sticky-note-text',
-            content : this.state.note
-        }
-    })
+  new Text({
+    targetEl: stickyNoteEl,
+    initialState: {
+      containerType: 'span',
+      className: 'sticky-note-text',
+      content: this.state.note,
+    },
+  })
 
-    targetEl.append(stickyNoteEl)
-
+  targetEl.append(stickyNoteEl)
 }

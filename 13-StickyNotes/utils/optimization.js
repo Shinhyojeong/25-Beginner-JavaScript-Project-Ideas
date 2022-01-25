@@ -1,1 +1,2 @@
-export const optimization = (currentState, nextState) => (JSON.stringify(currentState) === JSON.stringify(nextState))
+export const optimization = (currentState, nextState) =>
+  JSON.stringify(currentState) === JSON.stringify(nextState)

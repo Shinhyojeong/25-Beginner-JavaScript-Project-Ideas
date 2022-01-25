@@ -1,26 +1,24 @@
-export default function Button({
-    targetEl,
-    initialState,
-    onClick
-}){
-    this.state = initialState
+export default function Button({ targetEl, initialState, onClick }) {
+  this.state = initialState
 
-    const btnEl = document.createElement('div')
-    btnEl.className = this.state.btnClassName
+  const btnEl = document.createElement('div')
+  btnEl.className = this.state.btnClassName
 
-    this.render = () => {
-        const { btnClassName, content } = this.state
-        btnEl.innerHTML = `
+  this.render = () => {
+    const { btnClassName, content } = this.state
+    btnEl.innerHTML = `
             <button class='btn' name='${btnClassName}-btn'>${content}</button>
         `
+  }
+
+  this.render()
+  targetEl.append(btnEl)
+
+  btnEl.addEventListener('click', (e) => {
+    if (!e.target.name) {
+      return
     }
 
-    this.render()
-    targetEl.append(btnEl)
-
-    btnEl.addEventListener('click', e => {
-        if(!e.target.name){ return }
-
-        onClick(e)
-    })
+    onClick(e)
+  })
 }

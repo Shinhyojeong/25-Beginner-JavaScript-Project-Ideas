@@ -1,22 +1,17 @@
 import Button from './Button.js'
 
-export default function InputInformation({
-    targetEl,
-    initialState,
-    onSubmit,
-}){
-    const inputContainerEl = document.createElement('div')
-    inputContainerEl.className = 'container-input'
+export default function InputInformation({ targetEl, initialState, onSubmit }) {
+  const inputContainerEl = document.createElement('div')
+  inputContainerEl.className = 'container-input'
 
-    this.state = initialState
+  this.state = initialState
 
-    this.setState = nextState => {
-        this.state = nextState
-    }
+  this.setState = (nextState) => {
+    this.state = nextState
+  }
 
-
-    this.render = () => {
-        inputContainerEl.innerHTML = `
+  this.render = () => {
+    inputContainerEl.innerHTML = `
             <hr>
             <form>
                 <div>
@@ -47,29 +42,29 @@ export default function InputInformation({
             </form>
             <hr>
         `
-    }
+  }
 
-    this.render()
-    targetEl.append(inputContainerEl)
+  this.render()
+  targetEl.append(inputContainerEl)
 
+  new Button({
+    targetEl,
+    initialState: 'Calculate',
+    onClick: () => {
+      const formData = document.forms[0]
+      const bill = formData.elements[0]
+      const guest = formData.elements[1]
+      const service = formData.elements[2]
 
+      if (service.value === 'default') {
+        return
+      }
+      const tip = bill.value * guest.value * service.value
+      onSubmit(tip)
 
-    new Button({
-        targetEl,
-        initialState :'Calculate',
-        onClick : () => {
-            const formData = document.forms[0]
-            const bill = formData.elements[0]
-            const guest = formData.elements[1]
-            const service = formData.elements[2]
-
-            if(service.value === 'default'){ return }
-            const tip = bill.value * guest.value * service.value
-            onSubmit(tip)
-
-            bill.value = ''
-            guest.value = ''
-            service.value = 'default'
-        }
-    })
+      bill.value = ''
+      guest.value = ''
+      service.value = 'default'
+    },
+  })
 }

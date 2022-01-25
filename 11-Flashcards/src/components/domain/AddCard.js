@@ -1,24 +1,24 @@
-import Button from "../atomic/Button.js"
+import Button from '../atomic/Button.js'
 
 export default function AddCard({
-    targetEl,
-    initialState,
-    onChange,
-    onSubmit,
-}){
-    const addCardEl = document.createElement('div')
-    addCardEl.className = 'add-container'
-    addCardEl.style.display = 'none'
+  targetEl,
+  initialState,
+  onChange,
+  onSubmit,
+}) {
+  const addCardEl = document.createElement('div')
+  addCardEl.className = 'add-container'
+  addCardEl.style.display = 'none'
 
-    this.state = initialState
+  this.state = initialState
 
-    this.setState = nextState => {
-        this.state = nextState
-        addCardEl.style.display = this.state ? 'block' : 'none'
-    }
+  this.setState = (nextState) => {
+    this.state = nextState
+    addCardEl.style.display = this.state ? 'block' : 'none'
+  }
 
-    this.render = () => {
-        addCardEl.innerHTML = `
+  this.render = () => {
+    addCardEl.innerHTML = `
             <div class="add-title">Create Flashcard</div>
             <form>
                 <div class="add-content question">
@@ -35,36 +35,35 @@ export default function AddCard({
                 </div>
             </form>
         `
-    }
+  }
 
-    this.render()
+  this.render()
 
-    new Button({
-        targetEl : addCardEl,
-        initialState : 'Save',
-        onClick: () => {
-            const formData = document.forms[0]
-            const question = formData.elements[0]
-            const answer = formData.elements[1]
+  new Button({
+    targetEl: addCardEl,
+    initialState: 'Save',
+    onClick: () => {
+      const formData = document.forms[0]
+      const question = formData.elements[0]
+      const answer = formData.elements[1]
 
-            onSubmit({
-                question : question.value,
-                answer : answer.value,
-            })
+      onSubmit({
+        question: question.value,
+        answer: answer.value,
+      })
 
-            question.value = ''
-            answer.value = ''
-        }
-    })
+      question.value = ''
+      answer.value = ''
+    },
+  })
 
-    new Button({
-        targetEl : addCardEl,
-        initialState : 'Close',
-        onClick: () => {
-            onChange()
-        }
-    })
+  new Button({
+    targetEl: addCardEl,
+    initialState: 'Close',
+    onClick: () => {
+      onChange()
+    },
+  })
 
-    targetEl.append(addCardEl)
-
+  targetEl.append(addCardEl)
 }

@@ -1,38 +1,34 @@
-import Button from "../atomic/Button.js"
+import Button from '../atomic/Button.js'
 
-export default function Header({
-    targetEl,
-    onChange,
-    onRemove,
-}){
-    const headerEl = document.createElement('div')
-    headerEl.className = 'header'
+export default function Header({ targetEl, onChange, onRemove }) {
+  const headerEl = document.createElement('div')
+  headerEl.className = 'header'
 
-    this.render = () =>{
-        headerEl.innerHTML = `
+  this.render = () => {
+    headerEl.innerHTML = `
             <div>
                 <span class="logo">FlashCard</span>
             </div>
         `
-    }
+  }
 
-    this.render()
+  this.render()
 
-    new Button({
-        targetEl : headerEl,
-        initialState : 'Add Card',
-        onClick: () =>{
-            onChange()
-        }
-    })
+  new Button({
+    targetEl: headerEl,
+    initialState: 'Add Card',
+    onClick: () => {
+      onChange()
+    },
+  })
 
-    new Button({
-        targetEl : headerEl,
-        initialState : 'Del Card',
-        onClick: () =>{
-            onRemove()
-        }
-    })
+  new Button({
+    targetEl: headerEl,
+    initialState: 'Del Card',
+    onClick: () => {
+      onRemove()
+    },
+  })
 
-    targetEl.append(headerEl)
+  targetEl.append(headerEl)
 }

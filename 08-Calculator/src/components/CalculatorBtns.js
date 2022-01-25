@@ -1,21 +1,18 @@
-export default function ({
-    targetEl,
-    onClick,
-}){
-    const btnContainer = document.createElement('div')
-    btnContainer.className = 'btn-container'
+export default function ({ targetEl, onClick }) {
+  const btnContainer = document.createElement('div')
+  btnContainer.className = 'btn-container'
 
-    this.state = {
-        calculation : 0,
-        prevSelectedElName : 0,
-    }
+  this.state = {
+    calculation: 0,
+    prevSelectedElName: 0,
+  }
 
-    this.setState = nextState => {
-        this.state = nextState
-    }
+  this.setState = (nextState) => {
+    this.state = nextState
+  }
 
-    this.render = () => {
-        btnContainer.innerHTML = `
+  this.render = () => {
+    btnContainer.innerHTML = `
             <div class="btn-box first">
                 <button class="calculator-btn number" name="number" value="1">1</button>
                 <button class="calculator-btn number" name="number" value="2">2</button>
@@ -44,38 +41,43 @@ export default function ({
                 <button class="calculator-btn eqaul" name="equal" value="equal">=</button>
             </div>
         `
+  }
+
+  this.render()
+  targetEl.append(btnContainer)
+
+  btnContainer.addEventListener('click', (e) => {
+    const { name, innerText } = e.target
+    if (!name) {
+      return
     }
 
-    this.render()
-    targetEl.append(btnContainer)
+    const { calculation, prevSelectedElName } = this.state
+    let selectedValue
 
-    btnContainer.addEventListener('click', e => {
-        const { name, innerText } = e.target
-        if(!name){ return }
-
-        const { calculation, prevSelectedElName } = this.state
-        let selectedValue
-
-        if(!((name === 'equal' && prevSelectedElName === 'operator') ||
+    if (
+      !(
+        (name === 'equal' && prevSelectedElName === 'operator') ||
         (name === 'operator' && prevSelectedElName === 'operator') ||
-        (name === 'decimalPoint' && prevSelectedElName === 'decimalPoint'))){
-            if( name === 'cancel'){
-                selectedValue = 0
-            }else if(calculation === 0){
-                selectedValue = innerText
-            }else{
-                selectedValue = calculation + innerText
-            }
-        }else {
-            return
-        }
+        (name === 'decimalPoint' && prevSelectedElName === 'decimalPoint')
+      )
+    ) {
+      if (name === 'cancel') {
+        selectedValue = 0
+      } else if (calculation === 0) {
+        selectedValue = innerText
+      } else {
+        selectedValue = calculation + innerText
+      }
+    } else {
+      return
+    }
 
-
-        this.setState({
-            calculation : selectedValue,
-            prevSelectedElName : name,
-        })
-
-        onClick(this.state.calculation, name)
+    this.setState({
+      calculation: selectedValue,
+      prevSelectedElName: name,
     })
+
+    onClick(this.state.calculation, name)
+  })
 }

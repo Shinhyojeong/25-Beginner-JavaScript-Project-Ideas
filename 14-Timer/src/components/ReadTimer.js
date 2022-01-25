@@ -1,30 +1,24 @@
 import { checkTime } from '../utils/processTime.js'
 
-export default function ReadTimer({
-    targetEl,
-    initialState,
-    onClick,
-}){
+export default function ReadTimer({ targetEl, initialState, onClick }) {
+  const readTimerEl = document.createElement('div')
+  readTimerEl.className = 'read-timer-container'
 
-    const readTimerEl = document.createElement('div')
-    readTimerEl.className = 'read-timer-container'
+  this.state = initialState
 
-    this.state = initialState
-
-    this.setState = nextState => {
-        this.state = nextState
-        this.render()
-    }
-
-    this.render = () => {
-        readTimerEl.innerHTML = `${checkTime(this.state.time)}`
-    }
-
+  this.setState = (nextState) => {
+    this.state = nextState
     this.render()
-    targetEl.append(readTimerEl)
+  }
 
-    readTimerEl.addEventListener('click', e => {
-        onClick()
-    })
+  this.render = () => {
+    readTimerEl.innerHTML = `${checkTime(this.state.time)}`
+  }
 
+  this.render()
+  targetEl.append(readTimerEl)
+
+  readTimerEl.addEventListener('click', (e) => {
+    onClick()
+  })
 }

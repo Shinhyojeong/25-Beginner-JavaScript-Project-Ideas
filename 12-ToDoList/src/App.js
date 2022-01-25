@@ -1,48 +1,45 @@
 import AddTodo from './components/domain/AddTodo.js'
 import ReadTodoList from './components/domain/ReadTodoList.js'
 
-export default function App({
-    targetEl
-}){
+export default function App({ targetEl }) {
+  this.state = {
+    todoList: [],
+    lastId: 0,
+  }
 
-    this.state = {
-        todoList : [],
-        lastId : 0,
-    }
+  this.setState = (nextState) => {
+    this.state = nextState
+    readTodoList.setState(this.state.todoList)
+  }
 
-    this.setState = nextState => {
-        this.state = nextState
-        readTodoList.setState(this.state.todoList)
-    }
+  new AddTodo({
+    targetEl,
+    onSubmit: (todoText) => {
+      const { todoList, lastId } = this.state
 
-    new AddTodo({
-        targetEl,
-        onSubmit : (todoText) => {
-            const { todoList, lastId } = this.state
+      const todoItem = {
+        id: lastId,
+        content: todoText,
+      }
 
-            const todoItem = {
-                id : lastId,
-                content : todoText
-            }
+      this.setState({
+        ...this.state,
+        lastId: this.state.lastId + 1,
+        todoList: [...todoList, todoItem],
+      })
+    },
+  })
 
-            this.setState({
-                ...this.state,
-                lastId : this.state.lastId+1,
-                todoList : [...todoList, todoItem]
-            })
-        }
-     })
+  const readTodoList = new ReadTodoList({
+    targetEl,
+    initialState: this.state.todoList,
+    onRemove: (id) => {
+      const newTodoList = this.state.todoList.filter((todo) => todo.id !== id)
 
-    const readTodoList = new ReadTodoList({
-         targetEl,
-         initialState : this.state.todoList,
-         onRemove: (id) => {
-            const newTodoList = this.state.todoList.filter((todo) => todo.id !== id)
-
-            this.setState({
-                ...this.state,
-                todoList : newTodoList
-            })
-         }
-     })
+      this.setState({
+        ...this.state,
+        todoList: newTodoList,
+      })
+    },
+  })
 }

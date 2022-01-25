@@ -2,41 +2,46 @@ import Modal from '../atomic/Modal.js'
 import { optimization } from '../../utils/optimization.js'
 
 export default function AddSticky({
-    targetEl,
-    initialState,
-    onClose,
-    onSubmit,
-}){
-    this.state = initialState
+  targetEl,
+  initialState,
+  onClose,
+  onSubmit,
+}) {
+  this.state = initialState
 
-    this.setState = nextState => {
-        if(optimization(this.state, nextState)){ return }
-
-        this.state = nextState
-        addStickyModal.setState({
-            ...addStickyModal.state,
-            visible : this.state
-        })
+  this.setState = (nextState) => {
+    if (optimization(this.state, nextState)) {
+      return
     }
 
-    const addStickyModal = new Modal({
-        targetEl,
-        initialState : {
-            visible : this.state.modalVisible,
-            className : 'add-sticky-modal' ,
-            content : '<textarea class="add-sticky-textarea" placeholder="내용을 입력해 주세요"/>'
-        },
-        onClose: () => {
-            onClose()
-        }
+    this.state = nextState
+    addStickyModal.setState({
+      ...addStickyModal.state,
+      visible: this.state,
     })
+  }
 
-    const addTextArea = document.querySelector('.add-sticky-textarea')
-    addTextArea.addEventListener('keyup', e => {
-        if(e.key !== 'Enter'){ return }
+  const addStickyModal = new Modal({
+    targetEl,
+    initialState: {
+      visible: this.state.modalVisible,
+      className: 'add-sticky-modal',
+      content:
+        '<textarea class="add-sticky-textarea" placeholder="내용을 입력해 주세요"/>',
+    },
+    onClose: () => {
+      onClose()
+    },
+  })
 
-        const { target } = e
-        onSubmit(target.value)
-        target.value = ''
-    })
+  const addTextArea = document.querySelector('.add-sticky-textarea')
+  addTextArea.addEventListener('keyup', (e) => {
+    if (e.key !== 'Enter') {
+      return
+    }
+
+    const { target } = e
+    onSubmit(target.value)
+    target.value = ''
+  })
 }
