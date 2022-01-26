@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400&family=Montserrat:ital,wght@0,400;1,300&family=Open+Sans:wght@300;400;500&family=Sedgwick+Ave&family=The+Nautigal&family=Work+Sans:wght@300&display=swap');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(195, 186, 203);
+  background: linear-gradient(
+    0deg,
+    rgba(195, 186, 203, 1) 0%,
+    rgba(153, 123, 177, 1) 100%
+  );
+  font-family: 'Karla', sans-serif;
+}
+
+.read-timer-container {
+  color: white;
+  font-size: 78px;
+}
