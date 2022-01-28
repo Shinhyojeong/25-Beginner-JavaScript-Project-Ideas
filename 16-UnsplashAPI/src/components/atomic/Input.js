@@ -1,4 +1,4 @@
-import { createElement } from '../utils/createElement.js'
+import { createElement } from '../../utils/createElement.js'
 
 export default function Input({ targetEl, initialState, onKeyUp }) {
   this.state = initialState
