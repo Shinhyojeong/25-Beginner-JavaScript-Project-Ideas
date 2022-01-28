@@ -16,7 +16,7 @@ export default function Header({ targetEl, onSubmit }) {
   new Input({
     targetEl: headerEl,
     initialState: {
-      elClassName: 'input-btn',
+      elClassName: 'search-input',
       elPlaceholder: 'search..',
     },
     onKeyUp: (e) => {
@@ -29,6 +29,9 @@ export default function Header({ targetEl, onSubmit }) {
     },
   })
 
+  targetEl.append(headerEl)
+  const serachInputEl = document.querySelector('.search-input')
+
   new Button({
     targetEl: headerEl,
     initialState: {
@@ -37,9 +40,9 @@ export default function Header({ targetEl, onSubmit }) {
       content: 'search',
     },
     onClick: () => {
-      onSubmit()
+      console.log(serachInputEl)
+      onSubmit(serachInputEl.value)
+      serachInputEl.value = ''
     },
   })
-
-  targetEl.append(headerEl)
 }
