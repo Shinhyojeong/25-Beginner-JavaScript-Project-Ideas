@@ -1,6 +1,5 @@
 import TypingQuote from './components/TypingQuote.js'
 import { request } from './api/api.js'
-import { fetchQuote } from './utils/fetchQuote.js'
 
 export default function App({ targetEl }) {
   this.state = {
@@ -17,8 +16,7 @@ export default function App({ targetEl }) {
     targetEl,
     initialState: this.state,
     nextQuote: async () => {
-      const data = await fetchQuote()
-      console.log(data.content)
+      const data = await request()
 
       this.setState({
         ...this.state,
@@ -26,6 +24,4 @@ export default function App({ targetEl }) {
       })
     },
   })
-
-  fetchInitialState()
 }
