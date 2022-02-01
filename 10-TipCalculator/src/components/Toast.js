@@ -12,11 +12,14 @@ export default function Toast({ targetEl }) {
   }
 
   this.render = () => {
+    ToastEl.classList.add('show')
     ToastEl.innerHTML = `
             <span class="toast-text">Tip $${this.state.tip} Each</span>
         `
+    setTimeout(() => {
+      ToastEl.classList.remove('show')
+    }, 3500)
   }
 
-  this.render()
   targetEl.append(ToastEl)
 }

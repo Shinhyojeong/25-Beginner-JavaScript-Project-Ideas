@@ -17,7 +17,7 @@ export default function App({ targetEl }) {
   }
 
   new InputInformation({
-    targetEl,
+    targetEl: containerEl,
     onSubmit: (tip) => {
       this.setState({ tip })
       console.log(this.state)

@@ -1,0 +1,156 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(155, 205, 148);
+  background: linear-gradient(
+    90deg,
+    rgba(155, 205, 148, 1) 0%,
+    rgba(196, 203, 123, 1) 100%
+  );
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  /*     justify-content:center; */
+  gap: 10px;
+  align-items: center;
+  width: 450px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 10px #1b1b1b14;
+  border-radius: 10px;
+  background-color: #efefef;
+}
+
+.container-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.container-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+hr {
+  margin: 20px 0;
+  background-color: #ededed;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-info {
+  width: 100%;
+  min-height: 35px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #cacaca;
+}
+
+.btn-calc {
+  padding: 8px 15px;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-calc:hover {
+  background: white;
+}
+
+.toast-container {
+  position: absolute;
+  left: calc(50% - 100px);
+  bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  background: #74a98a;
+  color: white;
+}
+
+.toast-container.show {
+  display: flex;
+  -webkit-animation: fadein 1s, stay 1.5s 1s, fadeout 1s 2.5s;
+  animation: fadein 1s, stay 1.5s 1s, fadeout 1s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes stay {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 30px;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes stay {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 30px;
+  }
+}
