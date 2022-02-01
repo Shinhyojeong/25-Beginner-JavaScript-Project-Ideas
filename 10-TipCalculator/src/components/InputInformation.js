@@ -14,19 +14,19 @@ export default function InputInformation({ targetEl, initialState, onSubmit }) {
     inputContainerEl.innerHTML = `
             <hr>
             <form>
-                <div>
+                <div class="form-item">
                     <label for ="bill">
                         <span class="input-title">Bill Amount</span>
                     </label>
                     <input type="number" class="input-info bill" id="bill" />
                 </div>
-                <div>
+                <div class="form-item">
                     <label for ="guest">
                         <span class="input-title">Number of Guests</span>
                     </label>
                     <input type="number" class="input-info guest" id="guest" />
                 </div>
-                <div>
+                <div class="form-item">
                     <label for="service" class="input-box">
                         <span class="input-title">Service Quality</span>
                         <select id="service" class="input-info service">
@@ -59,7 +59,7 @@ export default function InputInformation({ targetEl, initialState, onSubmit }) {
       if (service.value === 'default') {
         return
       }
-      const tip = bill.value * guest.value * service.value
+      const tip = (bill.value / guest.value) * service.value
       onSubmit(tip)
 
       bill.value = ''
