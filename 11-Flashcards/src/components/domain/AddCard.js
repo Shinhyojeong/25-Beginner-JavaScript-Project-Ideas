@@ -7,7 +7,11 @@ export default function AddCard({
   onSubmit,
 }) {
   const addCardEl = document.createElement('div')
+  const btnBoxEl = document.createElement('div')
+
   addCardEl.className = 'add-container'
+  btnBoxEl.className = 'btn-box'
+
   addCardEl.style.display = 'none'
 
   this.state = initialState
@@ -40,7 +44,7 @@ export default function AddCard({
   this.render()
 
   new Button({
-    targetEl: addCardEl,
+    targetEl: btnBoxEl,
     initialState: 'Save',
     onClick: () => {
       const formData = document.forms[0]
@@ -50,6 +54,7 @@ export default function AddCard({
       onSubmit({
         question: question.value,
         answer: answer.value,
+        answerReveal: false,
       })
 
       question.value = ''
@@ -58,12 +63,13 @@ export default function AddCard({
   })
 
   new Button({
-    targetEl: addCardEl,
+    targetEl: btnBoxEl,
     initialState: 'Close',
     onClick: () => {
       onChange()
     },
   })
 
+  addCardEl.append(btnBoxEl)
   targetEl.append(addCardEl)
 }

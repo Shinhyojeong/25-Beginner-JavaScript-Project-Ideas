@@ -2,7 +2,10 @@ import Button from '../atomic/Button.js'
 
 export default function Header({ targetEl, onChange, onRemove }) {
   const headerEl = document.createElement('div')
+  const btnContainerEl = document.createElement('div')
+
   headerEl.className = 'header'
+  btnContainerEl.className = 'btn-container'
 
   this.render = () => {
     headerEl.innerHTML = `
@@ -15,7 +18,7 @@ export default function Header({ targetEl, onChange, onRemove }) {
   this.render()
 
   new Button({
-    targetEl: headerEl,
+    targetEl: btnContainerEl,
     initialState: 'Add Card',
     onClick: () => {
       onChange()
@@ -23,12 +26,13 @@ export default function Header({ targetEl, onChange, onRemove }) {
   })
 
   new Button({
-    targetEl: headerEl,
+    targetEl: btnContainerEl,
     initialState: 'Del Card',
     onClick: () => {
       onRemove()
     },
   })
 
+  headerEl.append(btnContainerEl)
   targetEl.append(headerEl)
 }
