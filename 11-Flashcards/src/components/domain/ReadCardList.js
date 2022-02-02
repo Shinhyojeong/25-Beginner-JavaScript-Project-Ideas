@@ -1,6 +1,6 @@
 import FlashCard from './FlashCard.js'
 
-export default function ReadCardList({ targetEl, initialState }) {
+export default function ReadCardList({ targetEl, initialState, onChange }) {
   const readCardList = document.createElement('div')
   readCardList.className = 'card-list-container'
 
@@ -14,10 +14,15 @@ export default function ReadCardList({ targetEl, initialState }) {
   this.render = () => {
     readCardList.innerHTML = ``
 
-    this.state?.map((item) => {
+    this.state?.forEach((item, idx) => {
       new FlashCard({
         targetEl: readCardList,
         initialState: item,
+        onChange: (cardInfo) => {
+          const newCardList = this.state.slice()
+          newCardList.splice(idx, 1, cardInfo)
+          onChange(newCardList)
+        },
       })
     })
   }

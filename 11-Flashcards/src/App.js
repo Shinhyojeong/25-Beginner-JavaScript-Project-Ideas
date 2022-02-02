@@ -6,6 +6,9 @@ import { setItem, getItem, removeItem } from './utils/storage.js'
 const LOCALSTORAGE_KEY = 'card-list'
 
 export default function App({ targetEl }) {
+  const containerEl = document.createElement('div')
+  containerEl.className = 'container'
+
   this.state = {
     visibleAddCard: false,
     cardList: getItem(LOCALSTORAGE_KEY, []),
@@ -18,7 +21,7 @@ export default function App({ targetEl }) {
   }
 
   new Header({
-    targetEl,
+    targetEl: containerEl,
     onChange: () => {
       this.setState({
         ...this.state,
@@ -36,7 +39,7 @@ export default function App({ targetEl }) {
   })
 
   const addCard = new AddCard({
-    targetEl,
+    targetEl: containerEl,
     initialState: this.state.visibleAddCard,
     onChange: () => {
       this.setState({
@@ -55,7 +58,17 @@ export default function App({ targetEl }) {
   })
 
   const readCardList = new ReadCardList({
-    targetEl,
+    targetEl: containerEl,
     initialState: this.state.cardList,
+    onChange: (cardList) => {
+      this.setState({
+        ...this.state,
+        cardList,
+      })
+
+      setItem(LOCALSTORAGE_KEY, this.state.cardList)
+    },
   })
+
+  targetEl.append(containerEl)
 }
