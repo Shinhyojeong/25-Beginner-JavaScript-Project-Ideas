@@ -1,0 +1,27 @@
+import { createElement } from '../../utils/createElement.js'
+
+export default function Input({ targetEl, initialState, onKeyUp }) {
+  const { elClassName, placeholder } = initialState
+  const inputEl = createElement('input', elClassName)
+  inputEl.append('placeholder', placeholder)
+
+  this.state = initialState
+
+  this.setState = (nextState) => {
+    this.state = nextState
+    this.render()
+  }
+
+  this.render = () => {
+    const { value } = this.state
+
+    value && inputEl.append('value', value)
+  }
+
+  this.render()
+  targetEl.append(inputEl)
+
+  inputEl.addEventListener('keyup', (e) => {
+    onKeyUp(e)
+  })
+}
