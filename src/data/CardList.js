@@ -20,12 +20,12 @@ export const CARD_LIST_DATA = [
     submitUrl: './05-Counter/index.html',
   },
   {
-    imgUrl: './src/assets/img/5_counter_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'Image Carousel',
     submitUrl: './06-ImageCarousel/index.html',
   },
   {
-    imgUrl: './src/assets/img/5_counter_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'Digital Clock',
     submitUrl: './07-DigitalClock/index.html',
   },
@@ -50,32 +50,32 @@ export const CARD_LIST_DATA = [
     submitUrl: './11-Flashcards/index.html',
   },
   {
-    imgUrl: './src/assets/img/11_flash_card_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'To Do List',
     submitUrl: './12-ToDoList/index.html',
   },
   {
-    imgUrl: './src/assets/img/11_flash_card_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'Sticky Notes',
     submitUrl: './13-StickyNotes/index.html',
   },
   {
-    imgUrl: './src/assets/img/11_flash_card_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'Timer',
     submitUrl: './14-Timer/index.html',
   },
   {
-    imgUrl: './src/assets/img/11_flash_card_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'Math',
     submitUrl: './15-Math/index.html',
   },
   {
-    imgUrl: './src/assets/img/11_flash_card_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'Unsplash API',
     submitUrl: './16-UnsplashAPI/index.html',
   },
   {
-    imgUrl: './src/assets/img/11_flash_card_preview.png',
+    imgUrl: './src/assets/img/no_preview.png',
     title: 'Typewriter',
     submitUrl: './17-Typewriter/index.html',
   },
