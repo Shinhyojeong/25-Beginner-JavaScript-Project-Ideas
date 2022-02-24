@@ -11,7 +11,10 @@ export default function Header({ targetEl, onChange }) {
       elPlaceholder: 'Search Wikipedia...',
     },
     onKeyUp: (e) => {
-      e.key === 'Enter' && onChange(e.target.value)
+      if (e.key === 'Enter') {
+        onChange(e.target.value)
+        e.target.value = ''
+      }
     },
   })
 

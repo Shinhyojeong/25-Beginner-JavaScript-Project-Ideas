@@ -11,8 +11,9 @@ export default function Input({ targetEl, initialState, onKeyUp }) {
   }
 
   this.render = () => {
-    inputEl.className = this.state.elClassName
-    inputEl.placeholder = this.state.elPlaceholder
+    const { elClassName, elPlaceholder } = this.state
+    inputEl.className = elClassName
+    inputEl.placeholder = elPlaceholder
   }
 
   this.render()
