@@ -1,9 +1,7 @@
 import { createElement, applyClassName } from '../../utils/createElement.js'
 
 export default function Text({ targetEl, initialState }) {
-  const { elType, elClassName } = initialState
-
-  const textEl = createElement(elType, elClassName)
+  const textEl = createElement(initialState.elType)
 
   this.state = initialState
 
@@ -14,8 +12,9 @@ export default function Text({ targetEl, initialState }) {
 
   this.render = () => {
     const { elClassName, content } = this.state
-    applyClassName(textEl, elClassName)
+
     textEl.innerHTML = `${content}`
+    applyClassName(textEl, elClassName)
   }
 
   this.render()

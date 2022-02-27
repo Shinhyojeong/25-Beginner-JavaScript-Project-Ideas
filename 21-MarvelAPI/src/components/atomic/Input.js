@@ -1,7 +1,7 @@
-import { createElement } from '../../utils/createElement.js'
+import { createElement, applyClassName } from '../../utils/createElement.js'
 
 export default function App({ targetEl, initialState, onKeyUp }) {
-  const inputEl = createElement('input', initialState.elClassName)
+  const inputEl = createElement('input')
 
   this.state = initialState
 
@@ -13,8 +13,8 @@ export default function App({ targetEl, initialState, onKeyUp }) {
   this.render = () => {
     const { elPlaceholder, elClassName } = this.state
 
-    inputEl.className = elClassName
     inputEl.placeholder = elPlaceholder
+    applyClassName(inputEl, elClassName)
   }
 
   this.render()

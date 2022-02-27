@@ -1,7 +1,7 @@
-import { createElement } from '../../utils/createElement.js'
+import { createElement, applyClassName } from '../../utils/createElement.js'
 
 export default function Button({ targetEl, initialState, onClick }) {
-  const buttonEl = createElement('button', initialState.elClassName)
+  const buttonEl = createElement('button')
   buttonEl.type = 'button'
 
   this.state = initialState
@@ -15,7 +15,7 @@ export default function Button({ targetEl, initialState, onClick }) {
     const { elClassName, content } = this.state
 
     buttonEl.innerHTML = `${content}`
-    buttonEl.className = elClassName
+    applyClassName(buttonEl, elClassName)
   }
 
   this.render()
