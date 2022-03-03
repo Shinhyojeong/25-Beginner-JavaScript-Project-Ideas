@@ -17,7 +17,7 @@ export default function TextBox({ targetEl, initialState }) {
     applyClassName(textBoxEl, elClassName)
 
     new Text({
-      targetEl,
+      targetEl: textBoxEl,
       initialState: {
         elType: 'p',
         elClassName: `text-title`,
@@ -26,7 +26,7 @@ export default function TextBox({ targetEl, initialState }) {
     })
 
     new Text({
-      targetEl,
+      targetEl: textBoxEl,
       initialState: {
         elType: 'p',
         elClassName: `text-content`,
