@@ -14,7 +14,7 @@ export default function Button({ targetEl, initialState, onClick }) {
   this.render = () => {
     const { elClassName, content } = this.state
 
-    buttonEl.innerHTML = `${content}`
+    buttonEl.innerHTML = `${content.toUpperCase()}`
     applyClassName(buttonEl, elClassName)
   }
 

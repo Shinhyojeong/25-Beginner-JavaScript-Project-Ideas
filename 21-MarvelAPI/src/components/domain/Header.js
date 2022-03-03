@@ -9,7 +9,7 @@ export default function Header({ targetEl }) {
     initialState: {
       elType: 'span',
       elClassName: 'header-title',
-      content: 'MARVEL',
+      content: 'Marvel',
     },
   })
 

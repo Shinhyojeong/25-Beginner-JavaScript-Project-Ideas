@@ -13,7 +13,7 @@ export default function Text({ targetEl, initialState }) {
   this.render = () => {
     const { elClassName, content } = this.state
 
-    textEl.innerHTML = `${content}`
+    textEl.innerHTML = `${content.toUpperCase()}`
     applyClassName(textEl, elClassName)
   }
 

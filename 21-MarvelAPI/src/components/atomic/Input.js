@@ -13,7 +13,7 @@ export default function App({ targetEl, initialState, onKeyUp }) {
   this.render = () => {
     const { elPlaceholder, elClassName } = this.state
 
-    inputEl.placeholder = elPlaceholder
+    inputEl.placeholder = elPlaceholder.toUpperCase()
     applyClassName(inputEl, elClassName)
   }
 
