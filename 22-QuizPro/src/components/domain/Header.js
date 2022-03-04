@@ -1,5 +1,5 @@
 import { createElement } from '../../utils/createElement.js'
-import Text from '../base/Text.js'
+import { Text } from '../base/index.js'
 
 export default function Header({ targetEl }) {
   const headerEl = createElement('div', 'header')

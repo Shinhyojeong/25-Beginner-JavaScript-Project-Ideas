@@ -1,4 +1,6 @@
 export const applyClassName = (el, elClassName) => {
+  el.removeAttribute('class')
+
   elClassName &&
     elClassName.split(' ').forEach((className) => {
       el.classList.add(className)
