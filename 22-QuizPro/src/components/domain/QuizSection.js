@@ -12,42 +12,57 @@ export default function QuizSection({ targetEl, initialState }) {
     this.render()
   }
 
-  this.render = () => {
-    const {
-      title,
-      numberOfInput,
-      inputIconUrl,
-      inputPlaceholder,
-      elClassName,
-    } = this.state
+  const { title, numberOfInput, inputIconUrl, inputPlaceholder, elClassName } =
+    this.state
+  let quizInputArray = []
 
-    quizSectionEl.innerHTML = ``
-    const inputContainerEl = createElement('div', 'ipnut-container')
+  quizSectionEl.innerHTML = ``
+  const inputContainerEl = createElement('div', 'ipnut-container')
 
-    applyClassName(quizSectionEl, elClassName)
+  applyClassName(quizSectionEl, elClassName)
 
-    new Text({
-      targetEl: quizSectionEl,
+  new Text({
+    targetEl: quizSectionEl,
+    initialState: {
+      elClassName: 'section-title',
+      elType: 'div',
+      content: title,
+    },
+  })
+
+  for (let i = 0; i < numberOfInput; i++) {
+    const quizInputEl = new QuizInput({
+      targetEl: inputContainerEl,
       initialState: {
-        elClassName: 'section-title',
-        elType: 'div',
-        content: title,
+        iconUrl: inputIconUrl,
+        elPlaceholder: inputPlaceholder,
+        id: i,
+        btnClassName: `quiz-btn`,
+      },
+      onSubmit: (id) => {
+        this.setState({
+          ...this.state,
+          answerNum: id,
+        })
       },
     })
 
-    for (let i = 0; i < numberOfInput; i++) {
-      new QuizInput({
-        targetEl: inputContainerEl,
-        initialState: {
-          iconUrl: inputIconUrl,
-          elPlaceholder: inputPlaceholder,
-        },
-      })
-    }
-
-    quizSectionEl.append(inputContainerEl)
+    quizInputArray.push(quizInputEl)
   }
 
-  this.render()
+  this.render = () => {
+    const { answerNum } = this.state
+
+    quizInputArray?.forEach((item, idx) => {
+      const isSelected = answerNum == idx ? 'quiz-btn selected' : 'quiz-btn'
+
+      item.setState({
+        ...item.state,
+        btnClassName: isSelected,
+      })
+    })
+  }
+
+  quizSectionEl.append(inputContainerEl)
   targetEl.append(quizSectionEl)
 }

@@ -1,6 +1,6 @@
 import { applyClassName, createElement } from '../../utils/createElement.js'
 
-export default function Button({ targetEl, initialState }) {
+export default function Button({ targetEl, initialState, onClick }) {
   const buttonEl = createElement('button')
 
   this.state = initialState
@@ -19,4 +19,8 @@ export default function Button({ targetEl, initialState }) {
 
   this.render()
   targetEl.append(buttonEl)
+
+  buttonEl.addEventListener('click', (e) => {
+    onClick(e)
+  })
 }
