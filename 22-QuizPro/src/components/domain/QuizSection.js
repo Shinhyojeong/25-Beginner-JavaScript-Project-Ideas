@@ -1,20 +1,34 @@
 import { createElement, applyClassName } from '../../utils/createElement.js'
 import { QuizInput } from './index.js'
-import { Text } from '../base/index.js'
+import { Text, Divider } from '../base/index.js'
 
-export default function QuizSection({ targetEl, initialState }) {
+export default function QuizSection({
+  targetEl,
+  initialState,
+  submitQuizItemSheet,
+}) {
   const quizSectionEl = createElement('div')
 
-  this.state = initialState
+  const sectionInitialState = {
+    ...initialState,
+    quizItemSheet: {
+      itemList: new Array(initialState.numberOfInput).fill(null),
+      answerNum: null,
+    },
+  }
+
+  this.state = sectionInitialState
 
   this.setState = (nextState) => {
     this.state = nextState
-    this.render()
   }
 
-  const { title, numberOfInput, inputIconUrl, inputPlaceholder, elClassName } =
+  this.reset = () => {
+    this.state = sectionInitialState
+  }
+
+  const { title, numberOfInput, inputIconUrl, elClassName, selectable } =
     this.state
-  let quizInputArray = []
 
   quizSectionEl.innerHTML = ``
   const inputContainerEl = createElement('div', 'ipnut-container')
@@ -30,36 +44,71 @@ export default function QuizSection({ targetEl, initialState }) {
     },
   })
 
+  new Divider({
+    targetEl: quizSectionEl,
+    initialState: {},
+  })
+
   for (let i = 0; i < numberOfInput; i++) {
-    const quizInputEl = new QuizInput({
+    new QuizInput({
       targetEl: inputContainerEl,
       initialState: {
         iconUrl: inputIconUrl,
-        elPlaceholder: inputPlaceholder,
+        elPlaceholder: `${title}...`,
         id: i,
         btnClassName: `quiz-btn`,
+        selectable,
       },
-      onSubmit: (id) => {
+      onClick: (answerNum) => {
+        const { quizItemSheet } = this.state
+
+        if (!selectable) {
+          return
+        }
+
         this.setState({
           ...this.state,
-          answerNum: id,
+          quizItemSheet: {
+            ...quizItemSheet,
+            answerNum,
+          },
         })
+
+        this.render()
+        submitQuizItemSheet(this.state.quizItemSheet)
+      },
+      onKeyUp: (value, id) => {
+        const { quizItemSheet } = this.state
+        const itemList = [...quizItemSheet.itemList]
+        itemList.splice(id, 1, value)
+
+        this.setState({
+          ...this.state,
+          quizItemSheet: {
+            ...quizItemSheet,
+            itemList: itemList,
+          },
+        })
+
+        submitQuizItemSheet(this.state.quizItemSheet)
       },
     })
-
-    quizInputArray.push(quizInputEl)
   }
 
   this.render = () => {
-    const { answerNum } = this.state
+    const { quizItemSheet, selectable } = this.state
+    const { answerNum } = quizItemSheet
+
+    if (!selectable) {
+      return
+    }
+
+    const quizInputArray = document.querySelectorAll(`.${elClassName} input`)
 
     quizInputArray?.forEach((item, idx) => {
       const isSelected = answerNum == idx ? 'quiz-btn selected' : 'quiz-btn'
 
-      item.setState({
-        ...item.state,
-        btnClassName: isSelected,
-      })
+      applyClassName(item, isSelected)
     })
   }
 

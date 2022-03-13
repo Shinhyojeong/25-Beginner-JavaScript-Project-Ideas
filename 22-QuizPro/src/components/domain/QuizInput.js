@@ -1,7 +1,13 @@
 import { createElement } from '../../utils/createElement.js'
 import { Button, Input } from '../base/index.js'
+import { resetForm } from '../../utils/customEvent.js'
 
-export default function QuizInput({ targetEl, initialState, onSubmit }) {
+export default function QuizInput({
+  targetEl,
+  initialState,
+  onClick,
+  onKeyUp,
+}) {
   const quizInputEl = createElement('div', 'quiz-container')
 
   this.state = initialState
@@ -14,7 +20,7 @@ export default function QuizInput({ targetEl, initialState, onSubmit }) {
     })
   }
 
-  const { iconUrl, elPlaceholder, id, btnClassName } = this.state
+  const { iconUrl, elPlaceholder, id, btnClassName, selectable } = this.state
 
   quizInputEl.innerHTML = ``
   quizInputEl.dataset.id = id
@@ -28,22 +34,36 @@ export default function QuizInput({ targetEl, initialState, onSubmit }) {
     onClick: (e) => {
       const selectedItemEl = e.target.closest('.quiz-container')
 
-      if (!selectedItemEl) {
-        return
-      }
+      if (selectedItemEl && selectable) {
+        const { id } = selectedItemEl.dataset
 
-      const id = selectedItemEl.dataset.id
-      onSubmit(id)
+        onClick(id)
+      }
     },
   })
 
-  new Input({
+  const quizInput = new Input({
     targetEl: quizInputEl,
     initialState: {
       elClassName: 'quiz-input',
       elPlaceholder,
     },
+    onKeyUp: (e) => {
+      const { value } = e.target
+
+      if (!value) {
+        return
+      }
+
+      onKeyUp(value, id)
+    },
   })
 
   targetEl.append(quizInputEl)
+  resetForm(() =>
+    quizInput.setState({
+      ...quizInput.state,
+      inputValue: null,
+    })
+  )
 }

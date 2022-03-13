@@ -11,10 +11,12 @@ export default function Input({ targetEl, initialState, onKeyUp }) {
   }
 
   this.render = () => {
-    const { elClassName, elPlaceholder } = this.state
+    const { elClassName, elPlaceholder, inputValue } = this.state
 
     applyClassName(inputEl, elClassName)
     inputEl.placeholder = elPlaceholder
+
+    inputEl.value = inputValue || null
   }
 
   this.render()
