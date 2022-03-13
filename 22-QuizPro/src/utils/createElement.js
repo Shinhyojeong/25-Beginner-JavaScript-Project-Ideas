@@ -7,7 +7,7 @@ export const applyClassName = (el, elClassName) => {
     })
 }
 
-export const createElement = (elType, elClassName) => {
+export const createElement = (elType = 'div', elClassName) => {
   const el = document.createElement(elType)
   applyClassName(el, elClassName)
 

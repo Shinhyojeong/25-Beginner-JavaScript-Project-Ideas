@@ -1,5 +1,3 @@
-import { reset } from './customEvent.js'
-
 export const checkComplete = (quizItemSheet) => {
   const { question, answerList, answerNum } = quizItemSheet
 
@@ -16,13 +14,20 @@ export const checkComplete = (quizItemSheet) => {
   return false
 }
 
-export function addQuizData() {
+export function addQuizData(submitQuizSheet, addMore = true) {
   const currentQuiz = this.state
   const formComplete = checkComplete(currentQuiz)
+
   if (!formComplete) {
     alert('형식을 채워주세용')
     return
   }
 
-  reset()
+  submitQuizSheet(this.state, addMore)
+  this.reset()
 }
+
+export const processingAnswerList = (answerList) =>
+  answerList?.map((item, idx) => {
+    return { value: idx, content: item }
+  })
