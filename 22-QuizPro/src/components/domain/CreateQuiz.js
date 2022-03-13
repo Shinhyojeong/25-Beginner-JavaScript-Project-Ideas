@@ -81,7 +81,7 @@ export default function CreateQuiz({
   new Button({
     targetEl: btnContainer,
     initialState: {
-      elClassName: 'add-quiz another',
+      elClassName: 'quiz-btn add',
       content: 'Add Another',
     },
     onClick: () => {
@@ -92,7 +92,7 @@ export default function CreateQuiz({
   new Button({
     targetEl: btnContainer,
     initialState: {
-      elClassName: 'add-quiz one',
+      elClassName: 'quiz-btn add',
       content: 'Add/Take Quiz',
     },
     onClick: () => {
@@ -110,7 +110,7 @@ export default function CreateQuiz({
   new Button({
     targetEl: createQuizEl,
     initialState: {
-      elClassName: 'delete-quiz',
+      elClassName: 'dquiz-btn delete',
       content: 'Delete Quiz',
     },
     onClick: () => {

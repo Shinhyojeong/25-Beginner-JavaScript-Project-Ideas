@@ -23,6 +23,14 @@ export function addQuizData(submitQuizSheet, addMore = true) {
     return
   }
 
+  if (!addMore) {
+    const addButtonList = document.querySelectorAll('.quiz-btn.add')
+
+    addButtonList?.forEach((btn) => {
+      btn.disabled = 'disabled'
+    })
+  }
+
   submitQuizSheet(this.state, addMore)
   this.reset()
 }
