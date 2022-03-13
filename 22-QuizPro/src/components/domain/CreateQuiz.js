@@ -1,7 +1,8 @@
-import { createElement } from '../../utils/createElement.js'
 import { Button, Divider } from '../base/index.js'
 import { QuizSection } from './index.js'
 import { addQuizData } from '../../utils/handleQuizData.js'
+import { createElement } from '../../utils/createElement.js'
+import { reset } from '../../utils/customEvent.js'
 
 export default function CreateQuiz({
   targetEl,
@@ -27,6 +28,7 @@ export default function CreateQuiz({
     this.state = initialState
     questionSection.reset()
     answerSection.reset()
+    reset()
   }
 
   new Text({
@@ -83,8 +85,7 @@ export default function CreateQuiz({
       content: 'Add Another',
     },
     onClick: () => {
-      addQuizData.apply(this)
-      submitQuizSheet(this.state, true)
+      addQuizData.apply(this, [submitQuizSheet])
     },
   })
 
@@ -95,8 +96,7 @@ export default function CreateQuiz({
       content: 'Add/Take Quiz',
     },
     onClick: () => {
-      addQuizData.apply(this)
-      submitQuizSheet(this.state, false)
+      addQuizData.apply(this, [submitQuizSheet, false])
     },
   })
 
