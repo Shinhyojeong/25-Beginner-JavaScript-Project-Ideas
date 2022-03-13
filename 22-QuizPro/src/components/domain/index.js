@@ -1,5 +1,6 @@
 export { default as Header } from './Header.js'
-export { default as QuestionCard } from './QuestionCard.js'
+export { default as QuizCard } from './QuizCard.js'
 export { default as QuizInput } from './QuizInput.js'
 export { default as QuizSection } from './QuizSection.js'
 export { default as CreateQuiz } from './CreateQuiz.js'
+export { default as QuizCardList } from './QuizCardList.js'
