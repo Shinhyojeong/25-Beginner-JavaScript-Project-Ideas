@@ -1,16 +1,32 @@
-import { Header, QuizCardList, CreateQuiz } from './components/domain/index.js'
+import {
+  Header,
+  QuizCardList,
+  CreateQuiz,
+  ResultCard,
+} from './components/domain/index.js'
+import { checkResult } from './utils/handleQuizData.js'
 
 export default function App({ targetEl }) {
   const initialState = {
     quizList: [],
     addMore: true,
+    resultList: [],
   }
 
   this.state = initialState
 
   this.setState = (nextState) => {
+    const { quizList, addMore, resultList } = nextState
+
     this.state = nextState
-    quizCardList.setState(this.state.quizList)
+    quizCardList.setState({
+      quizList: quizList,
+      addMore: addMore,
+    })
+    resultCard.setState({
+      ...resultCard.state,
+      resultList: resultList,
+    })
   }
 
   this.reset = () => {
@@ -36,6 +52,7 @@ export default function App({ targetEl }) {
       }
 
       this.setState({
+        ...this.state,
         quizList: [...this.state.quizList, quiz],
         addMore: canAdd,
       })
@@ -47,6 +64,25 @@ export default function App({ targetEl }) {
 
   const quizCardList = new QuizCardList({
     targetEl,
-    initialState: this.state.quizList,
+    initialState: {
+      quizList: this.state.quizList,
+      addMore: this.state.addMore,
+    },
+    onSubmit: () => {
+      const updateResultList = checkResult(this.state.quizList)
+
+      this.setState({
+        ...this.state,
+        resultList: updateResultList,
+      })
+    },
+  })
+
+  const resultCard = new ResultCard({
+    targetEl,
+    initialState: {
+      resultList: this.state.resultList,
+      elClassName: 'result-card',
+    },
   })
 }

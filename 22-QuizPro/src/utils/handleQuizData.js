@@ -39,3 +39,39 @@ export const processingAnswerList = (answerList) =>
   answerList?.map((item, idx) => {
     return { value: idx, content: item }
   })
+
+export const getRadioValue = () => {
+  const answerRadioList = document.querySelectorAll('.question-answer')
+  const selectedAnswerList = []
+
+  answerRadioList?.forEach((radio) => {
+    const selectedInput = radio.querySelector('input[type=radio]:checked')
+
+    selectedAnswerList.push(selectedInput ? Number(selectedInput.value) : null)
+  })
+
+  return selectedAnswerList
+}
+
+export const checkResult = (quizList) => {
+  const selectedAnswerList = getRadioValue()
+  const updateResultList = quizList?.map((quiz, idx) => {
+    const { answerNum, answerList } = quiz
+
+    return {
+      isCorrect: answerNum === selectedAnswerList[idx],
+      questionNum: idx + 1,
+      correctAnswer: answerList[answerNum],
+    }
+  })
+
+  return updateResultList
+}
+
+export const processingResultText = (item) => {
+  const { isCorrect, questionNum, correctAnswer } = item
+
+  return `Question ${questionNum} : ${
+    isCorrect ? 'Correct' : `Incorrect / Answer is ${correctAnswer}`
+  }`
+}

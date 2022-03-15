@@ -1,21 +1,26 @@
-import { Text, Radio, Divider } from '../base/index.js'
+import { Text, Radio, Divider, Button } from '../base/index.js'
 import { createElement } from '../../utils/createElement.js'
 import { processingAnswerList } from '../../utils/handleQuizData.js'
 
-export default function QuestionCard({ targetEl, initialState }) {
+export default function QuestionCard({ targetEl, initialState, onSubmit }) {
   const questionCardEl = createElement('div', 'question-card')
 
   this.state = initialState
 
-  const { quizNum, quizInfo } = this.state
+  this.setState = (nextState) => {
+    this.state = nextState
+  }
+
+  const { quizNum, quizInfo, addMore } = this.state
   const { question, answerList, answerNum } = quizInfo
+  const QuizCardName = `Question${quizNum}`
 
   new Text({
     targetEl: questionCardEl,
     initialState: {
       elType: 'span',
       elClassName: 'question-title',
-      content: `Question ${quizNum}`,
+      content: QuizCardName,
     },
   })
 
@@ -40,12 +45,25 @@ export default function QuestionCard({ targetEl, initialState }) {
   new Radio({
     targetEl: questionCardEl,
     initialstate: {
-      name: 'answer',
+      name: QuizCardName,
       elClassName: 'question-answer',
       selectList: processingAnswerList(answerList),
     },
+    onSelect: () => {},
   })
 
-  console.log(processingAnswerList(answerList))
+  !addMore &&
+    new Button({
+      targetEl: questionCardEl,
+      initialState: {
+        elClassName: 'submit-btn',
+        content: 'Submit',
+      },
+      onClick: () => {
+        // pushRadioValue()
+        onSubmit()
+      },
+    })
+
   targetEl.append(questionCardEl)
 }

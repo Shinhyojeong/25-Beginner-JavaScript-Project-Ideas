@@ -37,7 +37,7 @@ export default function QuizInput({
       if (selectedItemEl && selectable) {
         const { id } = selectedItemEl.dataset
 
-        onClick(id)
+        onClick(Number(id))
       }
     },
   })

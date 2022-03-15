@@ -1,12 +1,17 @@
 import { createElement } from '../../utils/createElement.js'
 import { QuizCard } from './index.js'
+import { optimization } from '../../utils/optimization.js'
 
-export default function QuestionCardList({ targetEl, initialState }) {
+export default function QuestionCardList({ targetEl, initialState, onSubmit }) {
   const cardListEl = createElement()
 
   this.state = initialState
 
   this.setState = (nextState) => {
+    if (optimization(this.state, nextState)) {
+      return
+    }
+
     this.state = nextState
     this.render()
   }
@@ -15,20 +20,8 @@ export default function QuestionCardList({ targetEl, initialState }) {
     cardListEl.innerHTML = ``
   }
 
-  const { quizList } = this.state
-
-  quizList?.forEach((quiz, idx) => {
-    new QuizCard({
-      targetEl: cardListEl,
-      initialState: {
-        quizNum: idx,
-        quizInfo: quiz,
-      },
-    })
-  })
-
   this.render = () => {
-    const quizList = this.state
+    const { quizList, addMore } = this.state
     const addQuizLength = quizList.length
     const addQuiz = quizList[addQuizLength - 1]
 
@@ -37,6 +30,10 @@ export default function QuestionCardList({ targetEl, initialState }) {
       initialState: {
         quizNum: addQuizLength,
         quizInfo: addQuiz,
+        addMore: addMore,
+      },
+      onSubmit: () => {
+        onSubmit()
       },
     })
   }
