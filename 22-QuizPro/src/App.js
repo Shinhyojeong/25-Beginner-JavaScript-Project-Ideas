@@ -32,6 +32,7 @@ export default function App({ targetEl }) {
   this.reset = () => {
     this.state = initialState
     quizCardList.reset()
+    resultCard.reset()
   }
 
   new Header({
@@ -58,6 +59,12 @@ export default function App({ targetEl }) {
       })
     },
     deleteAllSheet: () => {
+      const quizAddBtn = document.querySelectorAll('.quiz-btn.add')
+
+      quizAddBtn.forEach((btn) => {
+        btn.removeAttribute('disabled')
+      })
+
       this.reset()
     },
   })

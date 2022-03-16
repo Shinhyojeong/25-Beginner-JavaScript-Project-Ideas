@@ -110,7 +110,7 @@ export default function CreateQuiz({
   new Button({
     targetEl: createQuizEl,
     initialState: {
-      elClassName: 'dquiz-btn delete',
+      elClassName: 'quiz-btn delete',
       content: 'Delete Quiz',
     },
     onClick: () => {

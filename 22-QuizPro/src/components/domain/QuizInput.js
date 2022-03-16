@@ -20,6 +20,18 @@ export default function QuizInput({
     })
   }
 
+  this.reset = () => {
+    quizBtn.setState({
+      ...quizBtn.state,
+      elClassName: initialState.btnClassName,
+    })
+
+    quizInput.setState({
+      ...quizInput.state,
+      inputValue: null,
+    })
+  }
+
   const { iconUrl, elPlaceholder, id, btnClassName, selectable } = this.state
 
   quizInputEl.innerHTML = ``
@@ -60,10 +72,5 @@ export default function QuizInput({
   })
 
   targetEl.append(quizInputEl)
-  resetForm(() =>
-    quizInput.setState({
-      ...quizInput.state,
-      inputValue: null,
-    })
-  )
+  resetForm(() => this.reset())
 }
