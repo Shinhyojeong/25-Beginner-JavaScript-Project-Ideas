@@ -13,3 +13,14 @@ export const createElement = (elType = 'div', elClassName) => {
 
   return el
 }
+
+export const disabledBtns = (btnList, disabled = false) => {
+  const updateBtnList = Array.isArray(btnList) === true ? btnList : [btnList]
+
+  updateBtnList?.forEach((btn) => {
+    btn.setState({
+      ...btn.state,
+      disabled,
+    })
+  })
+}

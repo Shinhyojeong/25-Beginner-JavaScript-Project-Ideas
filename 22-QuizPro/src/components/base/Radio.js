@@ -14,9 +14,10 @@ export default function Radio({ targetEl, initialstate, onSelect }) {
   }
 
   this.render = () => {
-    const { name, elClassName, selectList } = this.state
+    const { name, elClassName, selectList, checked } = this.state
 
     applyClassName(radioEl, elClassName)
+    radioEl.checked = checked ?? false
 
     radioEl.innerHTML = `
       ${selectList

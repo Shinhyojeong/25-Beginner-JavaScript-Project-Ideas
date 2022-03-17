@@ -11,21 +11,25 @@ export default function App({ targetEl }) {
     quizList: [],
     addMore: true,
     resultList: [],
+    isSubmit: false,
   }
 
   this.state = initialState
 
   this.setState = (nextState) => {
-    const { quizList, addMore, resultList } = nextState
+    const { quizList, addMore, resultList, isSubmit } = nextState
 
     this.state = nextState
+
     quizCardList.setState({
-      quizList: quizList,
-      addMore: addMore,
+      quizList,
+      addMore,
     })
+
     resultCard.setState({
       ...resultCard.state,
-      resultList: resultList,
+      resultList,
+      isSubmit,
     })
   }
 
@@ -59,12 +63,6 @@ export default function App({ targetEl }) {
       })
     },
     deleteAllSheet: () => {
-      const quizAddBtn = document.querySelectorAll('.quiz-btn.add')
-
-      quizAddBtn.forEach((btn) => {
-        btn.removeAttribute('disabled')
-      })
-
       this.reset()
     },
   })
@@ -74,6 +72,7 @@ export default function App({ targetEl }) {
     initialState: {
       quizList: this.state.quizList,
       addMore: this.state.addMore,
+      isRetake: false,
     },
     onSubmit: () => {
       const updateResultList = checkResult(this.state.quizList)
@@ -81,6 +80,7 @@ export default function App({ targetEl }) {
       this.setState({
         ...this.state,
         resultList: updateResultList,
+        isSubmit: true,
       })
     },
   })
@@ -90,6 +90,7 @@ export default function App({ targetEl }) {
     initialState: {
       resultList: this.state.resultList,
       elClassName: 'result-card',
+      isSubmit: this.state.isSubmit,
     },
   })
 }

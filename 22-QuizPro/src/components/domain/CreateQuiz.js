@@ -1,7 +1,7 @@
 import { Button, Divider } from '../base/index.js'
 import { QuizSection } from './index.js'
 import { addQuizData } from '../../utils/handleQuizData.js'
-import { createElement } from '../../utils/createElement.js'
+import { createElement, disabledBtns } from '../../utils/createElement.js'
 import { reset } from '../../utils/customEvent.js'
 
 export default function CreateQuiz({
@@ -11,6 +11,7 @@ export default function CreateQuiz({
 }) {
   const createQuizEl = createElement('div', 'create-quiz')
   const btnContainer = createElement('create-quiz-btn')
+  const addBtnList = []
 
   const initialState = {
     question: '',
@@ -78,28 +79,29 @@ export default function CreateQuiz({
     },
   })
 
-  new Button({
+  const addMoreBtn = new Button({
     targetEl: btnContainer,
     initialState: {
       elClassName: 'quiz-btn add',
       content: 'Add Another',
     },
     onClick: () => {
-      addQuizData.apply(this, [submitQuizSheet])
+      addQuizData.apply(this, [submitQuizSheet, true, addBtnList])
     },
   })
 
-  new Button({
+  const addBtn = new Button({
     targetEl: btnContainer,
     initialState: {
       elClassName: 'quiz-btn add',
       content: 'Add/Take Quiz',
     },
     onClick: () => {
-      addQuizData.apply(this, [submitQuizSheet, false])
+      addQuizData.apply(this, [submitQuizSheet, false, addBtnList])
     },
   })
 
+  addBtnList.push(addMoreBtn, addBtn)
   createQuizEl.append(btnContainer)
 
   new Divider({
@@ -115,6 +117,7 @@ export default function CreateQuiz({
     },
     onClick: () => {
       deleteAllSheet()
+      disabledBtns(addBtnList, false)
     },
   })
 

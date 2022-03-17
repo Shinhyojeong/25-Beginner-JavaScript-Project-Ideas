@@ -1,6 +1,7 @@
 import { Text, Radio, Divider, Button } from '../base/index.js'
-import { createElement } from '../../utils/createElement.js'
+import { createElement, disabledBtns } from '../../utils/createElement.js'
 import { processingAnswerList } from '../../utils/handleQuizData.js'
+import { resetRadio } from '../../utils/customEvent.js'
 
 export default function QuestionCard({ targetEl, initialState, onSubmit }) {
   const questionCardEl = createElement('div', 'question-card')
@@ -9,10 +10,22 @@ export default function QuestionCard({ targetEl, initialState, onSubmit }) {
 
   this.setState = (nextState) => {
     this.state = nextState
+    this.render()
+  }
+
+  this.reset = () => {
+    answerRadio.setState({
+      ...answerRadio.state,
+      checked: false,
+    })
+
+    if (submitBtn) {
+      disabledBtns(submitBtn)
+    }
   }
 
   const { quizNum, quizInfo, addMore } = this.state
-  const { question, answerList, answerNum } = quizInfo
+  const { question, answerList } = quizInfo
   const QuizCardName = `Question${quizNum}`
 
   new Text({
@@ -42,7 +55,7 @@ export default function QuestionCard({ targetEl, initialState, onSubmit }) {
     },
   })
 
-  new Radio({
+  const answerRadio = new Radio({
     targetEl: questionCardEl,
     initialstate: {
       name: QuizCardName,
@@ -52,7 +65,8 @@ export default function QuestionCard({ targetEl, initialState, onSubmit }) {
     onSelect: () => {},
   })
 
-  !addMore &&
+  const submitBtn =
+    !addMore &&
     new Button({
       targetEl: questionCardEl,
       initialState: {
@@ -60,10 +74,11 @@ export default function QuestionCard({ targetEl, initialState, onSubmit }) {
         content: 'Submit',
       },
       onClick: () => {
-        // pushRadioValue()
+        disabledBtns(submitBtn, true)
         onSubmit()
       },
     })
 
+  resetRadio(() => this.reset())
   targetEl.append(questionCardEl)
 }
