@@ -7,7 +7,7 @@ export const checkComplete = (quizItemSheet) => {
     }
   })
 
-  if (question && answerNum) {
+  if (question && typeof answerNum === 'number') {
     return true
   }
 
