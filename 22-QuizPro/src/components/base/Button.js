@@ -11,10 +11,13 @@ export default function Button({ targetEl, initialState, onClick }) {
   }
 
   this.render = () => {
-    const { elClassName, content } = this.state
+    const { elClassName, content, disabled } = this.state
 
     applyClassName(buttonEl, elClassName)
     buttonEl.innerHTML = `${content}`
+    disabled
+      ? (buttonEl.disabled = 'disabled')
+      : buttonEl.removeAttribute('disabled')
   }
 
   this.render()

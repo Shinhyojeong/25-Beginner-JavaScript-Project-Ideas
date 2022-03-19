@@ -103,7 +103,7 @@ export default function QuizSection({
       return
     }
 
-    const quizInputArray = document.querySelectorAll(`.${elClassName} input`)
+    const quizInputArray = document.querySelectorAll(`.${elClassName} button`)
 
     quizInputArray?.forEach((item, idx) => {
       const isSelected = answerNum == idx ? 'quiz-btn selected' : 'quiz-btn'

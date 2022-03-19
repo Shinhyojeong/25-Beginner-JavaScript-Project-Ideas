@@ -1,9 +1,12 @@
 import { applyClassName, createElement } from '../../utils/createElement.js'
 
-export default function Radio({ targetEl, initialstate }) {
-  const radioEl = createElement('div')
+export default function Radio({ targetEl, initialstate, onSelect }) {
+  const radioEl = createElement('form')
 
-  this.state = initialstate
+  this.state = {
+    ...initialstate,
+    prevValue: null,
+  }
 
   this.setState = (nextState) => {
     this.state = nextState
@@ -11,9 +14,10 @@ export default function Radio({ targetEl, initialstate }) {
   }
 
   this.render = () => {
-    const { name, elClassName, selectList } = this.state
+    const { name, elClassName, selectList, checked } = this.state
 
     applyClassName(radioEl, elClassName)
+    radioEl.checked = checked ?? false
 
     radioEl.innerHTML = `
       ${selectList
@@ -22,8 +26,8 @@ export default function Radio({ targetEl, initialstate }) {
 
           return `
             <div class="answer-item">
-              <input type="radio" id=${value} name =${name} value=${value} />
-              <label for=${value}>${content}</label>
+              <input type="radio" id='${name}-${value}' name =${name} value=${value} />
+              <label for='${name}-${value}'>${content}</label>
             </div>
           `
         })
@@ -33,4 +37,17 @@ export default function Radio({ targetEl, initialstate }) {
 
   this.render()
   targetEl.append(radioEl)
+
+  radioEl.addEventListener('click', (e) => {
+    const inputEl = e.target.closest('input')
+
+    if (!inputEl) {
+      return
+    }
+
+    const selectedNum = inputEl.value
+    const { prevValue } = this.state
+
+    prevValue !== selectedNum && onSelect(selectedNum)
+  })
 }
