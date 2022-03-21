@@ -1,7 +1,7 @@
 import { TypingQuote } from '@domain/17-Typewriter'
 import { request } from '@api/api.js'
 
-export default function App({ targetEl }) {
+export default function Typewriter({ targetEl }) {
   this.state = {
     quote:
       'Always be a first-rate version of yourself, instead of a second-rate version of somebody else',

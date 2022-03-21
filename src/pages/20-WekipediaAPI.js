@@ -1,7 +1,7 @@
 import { Header, ResultList } from '@base/20-WekipediaAPI'
 import { request } from '@api/api.js'
 
-export default function App({ targetEl }) {
+export default function WekipediaApi({ targetEl }) {
   this.state = {
     searchValue: '',
     searchResult: [],

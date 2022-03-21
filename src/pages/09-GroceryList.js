@@ -1,7 +1,7 @@
 import { AddList, ReadList, RemoveList } from '@domain/09-GroceryList'
 import '@styles/09-GroceryList.css'
 
-export default function App({ targetEl }) {
+export default function GroceryList({ targetEl }) {
   const containerEl = document.createElement('div')
   containerEl.className = 'container'
 

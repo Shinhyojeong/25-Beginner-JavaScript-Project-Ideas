@@ -1,7 +1,7 @@
 import { CalculatorBtns, ReadCalculation } from '@domain/08-Calculator'
 import '@styles/08-Calculator.css'
 
-export default function App({ targetEl }) {
+export default function Calculator({ targetEl }) {
   const containerEl = document.createElement('div')
   containerEl.className = 'container'
   targetEl.append(containerEl)

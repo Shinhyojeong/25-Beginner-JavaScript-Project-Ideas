@@ -2,7 +2,7 @@ import { Button } from '@base'
 import { QuoteBox } from '@domain/03-RandomQuoteGenerator'
 import '@styles/03-RandomQuoteGenerator.css'
 
-export default function App({ targetEl }) {
+export default function RandomQuoteGenerator({ targetEl }) {
   this.state = {
     quote: null,
   }

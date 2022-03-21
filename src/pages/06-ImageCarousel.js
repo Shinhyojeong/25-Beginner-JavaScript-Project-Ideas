@@ -8,7 +8,7 @@ import '@styles/06-ImageCarousel.css'
 const START_SLIDE_NUMBER = 1
 const END_SLIDE_NUMBER = 4
 
-export default function App({ targetEl }) {
+export default function ImageCarousel({ targetEl }) {
   const container = document.createElement('div')
   container.className = 'container'
   targetEl.append(container)

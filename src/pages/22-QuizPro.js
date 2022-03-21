@@ -6,7 +6,7 @@ import {
 } from '@domain/22-QuizPro'
 import { checkResult } from '@utils/handleQuizData'
 
-export default function App({ targetEl }) {
+export default function QuizPro({ targetEl }) {
   const initialState = {
     quizList: [],
     addMore: true,

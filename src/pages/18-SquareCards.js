@@ -4,7 +4,7 @@ import { CARD_LIST_DATA } from '@data/CardList.js'
 import { createElement } from '@utils/handleElement'
 import '@styles/18-SquareCards.css'
 
-export default function App({ targetEl }) {
+export default function SquareCards({ targetEl }) {
   const containerEl = createElement('div', 'container')
 
   this.state = {

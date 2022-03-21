@@ -4,7 +4,7 @@ import '@styles/11-FlashCard.css'
 
 const LOCALSTORAGE_KEY = 'card-list'
 
-export default function App({ targetEl }) {
+export default function FlashCard({ targetEl }) {
   const containerEl = document.createElement('div')
   containerEl.className = 'container'
 

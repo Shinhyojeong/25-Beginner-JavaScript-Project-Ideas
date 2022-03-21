@@ -1,7 +1,7 @@
 import { ReadNumber, CountingBtns } from '@domain/05-Counter'
 import '@styles/05-Counter.css'
 
-export default function App({ targetEl }) {
+export default function Counter({ targetEl }) {
   const containerEl = document.createElement('div')
   containerEl.className = 'container'
   targetEl.append(containerEl)

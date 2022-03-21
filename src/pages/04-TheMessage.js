@@ -1,7 +1,7 @@
 import { SendMessage, ReadMessage } from '@domain/04-TheMessage'
 import '@styles/03-TheMessage.css'
 
-export default function App({ targetEl }) {
+export default function TheMessage({ targetEl }) {
   const containerEl = document.createElement('div')
   containerEl.className = 'container'
   containerEl.textContent = 'Pass the message'

@@ -1,7 +1,7 @@
 import { HandleTimer, ReadTimer } from '@domain/14-Timer'
 import '@styles/14-Timer.css'
 
-export default function App({ targetEl }) {
+export default function Timer({ targetEl }) {
   this.state = {
     startTimer: false,
     time: 0,

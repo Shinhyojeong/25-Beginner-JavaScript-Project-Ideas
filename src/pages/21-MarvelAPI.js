@@ -1,7 +1,7 @@
 import { Header } from '@doamin/21-MarvelAPI'
 import { DEFAULT_RESULT } from '@data/defaultValue'
 
-export default function App({ targetEl }) {
+export default function MarvelApi({ targetEl }) {
   new Header({
     targetEl,
   })

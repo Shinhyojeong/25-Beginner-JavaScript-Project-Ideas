@@ -1,6 +1,6 @@
 import { AddTodo, ReadTodoList } from '@domain/12-ToDoList'
 
-export default function App({ targetEl }) {
+export default function ToDoList({ targetEl }) {
   this.state = {
     todoList: [],
     lastId: 0,

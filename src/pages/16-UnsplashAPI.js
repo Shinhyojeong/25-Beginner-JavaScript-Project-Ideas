@@ -1,7 +1,7 @@
 import { Header, ReadImageList } from '@domain/16-UnsplashAPI'
 import { fetchUnsplashApi } from '@utils/handleUnsplashData.js'
 
-export default function App({ targetEl }) {
+export default function UnsplashApi({ targetEl }) {
   this.state = {
     searchTerm: '',
     searchResult: '',

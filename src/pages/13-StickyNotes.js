@@ -1,6 +1,6 @@
 import { Header, AddSticky, StickyNoteList } from '@domain/13-StickyNotes'
 
-export default function ({ targetEl }) {
+export default function StickyNotes({ targetEl }) {
   this.state = {
     modalVisible: false,
     stickyList: [],

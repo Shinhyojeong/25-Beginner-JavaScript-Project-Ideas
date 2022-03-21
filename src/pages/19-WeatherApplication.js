@@ -1,1 +1,1 @@
-export default function App({ targetEl }) {}
+export default function WeatherApplication({ targetEl }) {}

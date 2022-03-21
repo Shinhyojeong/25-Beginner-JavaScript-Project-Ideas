@@ -2,7 +2,7 @@ import { Button } from '@base'
 import { Container } from '@domain/02-HexColors'
 import '@styles/02-HexColors.css'
 
-export default function App({ targetEl }) {
+export default function HexColors({ targetEl }) {
   this.state = {
     startColor: 'white',
     endColor: 'white',

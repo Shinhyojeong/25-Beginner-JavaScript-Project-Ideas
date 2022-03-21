@@ -6,7 +6,7 @@ import {
 } from '@utils/makeRandomNum.js'
 import { operaotrInfo } from '@data/operatorInfo'
 
-export default function App({ targetEl }) {
+export default function Math({ targetEl }) {
   const initialState = derivingCorrectAnswer('+')
 
   this.state = randomState('+')
