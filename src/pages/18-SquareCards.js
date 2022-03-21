@@ -1,8 +1,8 @@
-import { CardList } from '@domain/18-SquareCards'
-import { CARD_LIST_DATA } from '@data/CardList'
-import { createElement } from '@utils/handleElement'
 import { Text } from '@base'
-import '@style/index.css'
+import { CardList } from '@domain/18-SquareCards'
+import { CARD_LIST_DATA } from '@data/CardList.js'
+import { createElement } from '@utils/handleElement'
+import '@styles/18-SquareCards.css'
 
 export default function App({ targetEl }) {
   const containerEl = createElement('div', 'container')
