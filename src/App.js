@@ -2,6 +2,7 @@ import CardList from './components/domain/CardList.js'
 import { CARD_LIST_DATA } from './data/CardList.js'
 import { createElement } from './utils/createElement.js'
 import Text from './components/atomic/Text.js'
+import './style/index.css'
 
 export default function App({ targetEl }) {
   const containerEl = createElement('div', 'container')
