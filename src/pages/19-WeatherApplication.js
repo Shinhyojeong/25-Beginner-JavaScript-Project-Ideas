@@ -1,1 +1,5 @@
-export default function WeatherApplication({ targetEl }) {}
+export default function WeatherApplication({ targetEl }) {
+  const weatherApplicationEl = createElement()
+
+  targetEl.append(weatherApplicationEl)
+}

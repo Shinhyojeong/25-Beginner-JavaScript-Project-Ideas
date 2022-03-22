@@ -1,6 +1,9 @@
 import { Header, AddSticky, StickyNoteList } from '@domain/13-StickyNotes'
+import { createElement } from '@utils/handleElement'
 
 export default function StickyNotes({ targetEl }) {
+  const stickyNotesEl = createElement()
+
   this.state = {
     modalVisible: false,
     stickyList: [],
@@ -14,7 +17,7 @@ export default function StickyNotes({ targetEl }) {
   }
 
   new Header({
-    targetEl,
+    targetEl: stickyNotesEl,
     onOpen: () => {
       this.setState({
         ...this.state,
@@ -24,7 +27,7 @@ export default function StickyNotes({ targetEl }) {
   })
 
   const addStick = new AddSticky({
-    targetEl,
+    targetEl: stickyNotesEl,
     initialState: this.state.modalVisible,
     onClose: () => {
       this.setState({
@@ -49,7 +52,7 @@ export default function StickyNotes({ targetEl }) {
   })
 
   const stickyNoteList = new StickyNoteList({
-    targetEl,
+    targetEl: stickyNotesEl,
     initialState: this.state.stickyList,
     onRemove: (id) => {
       this.setState({
@@ -58,4 +61,6 @@ export default function StickyNotes({ targetEl }) {
       })
     },
   })
+
+  targetEl.append(stickyNotesEl)
 }

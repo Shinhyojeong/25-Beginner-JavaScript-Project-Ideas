@@ -1,12 +1,13 @@
 import { Header, AddCard, ReadCardList } from '@domain/11-Flashcards'
 import { setItem, getItem, removeItem } from '@utils/storage.js'
-import '@styles/11-FlashCard.css'
+import { createElement } from '@utils/handleElement'
+import '@style/11-Flashcard.css'
 
 const LOCALSTORAGE_KEY = 'card-list'
 
-export default function FlashCard({ targetEl }) {
-  const containerEl = document.createElement('div')
-  containerEl.className = 'container'
+export default function Flashcard({ targetEl }) {
+  const flashcardEl = createElement()
+  const containerEl = createElement('div', 'container')
 
   this.state = {
     visibleAddCard: false,
@@ -69,5 +70,6 @@ export default function FlashCard({ targetEl }) {
     },
   })
 
-  targetEl.append(containerEl)
+  flashcardEl.append(containerEl)
+  targetEl.append(flashcardEl)
 }

@@ -1,7 +1,10 @@
-import { Header, ResultList } from '@base/20-WekipediaAPI'
+import { Header, ResultList } from '@domain/20-WekipediaApi'
+import { createElement } from '@utils/handleElement'
 import { request } from '@api/api.js'
 
 export default function WekipediaApi({ targetEl }) {
+  const wekipediaApiEl = createElement()
+
   this.state = {
     searchValue: '',
     searchResult: [],
@@ -13,7 +16,7 @@ export default function WekipediaApi({ targetEl }) {
   }
 
   new Header({
-    targetEl,
+    targetEl: wekipediaApiEl,
     onChange: async (searchValue) => {
       const data = await request(searchValue)
       this.setState({
@@ -24,7 +27,9 @@ export default function WekipediaApi({ targetEl }) {
   })
 
   const resultList = new ResultList({
-    targetEl,
+    targetEl: wekipediaApiEl,
     initialState: this.state,
   })
+
+  targetEl.append(wekipediaApiEl)
 }

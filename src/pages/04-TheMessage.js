@@ -1,11 +1,12 @@
 import { SendMessage, ReadMessage } from '@domain/04-TheMessage'
-import '@styles/03-TheMessage.css'
+import { createElement } from '@utils/handleElement'
+import '@style/04-TheMessage.css'
 
 export default function TheMessage({ targetEl }) {
-  const containerEl = document.createElement('div')
-  containerEl.className = 'container'
+  const theMessageEl = createElement()
+  const containerEl = createElement('div', 'container')
+
   containerEl.textContent = 'Pass the message'
-  targetEl.append(containerEl)
 
   this.state = {
     message: '',
@@ -27,4 +28,7 @@ export default function TheMessage({ targetEl }) {
     targetEl: containerEl,
     initialState: this.state.message,
   })
+
+  theMessageEl.append(containerEl)
+  targetEl.append(theMessageEl)
 }

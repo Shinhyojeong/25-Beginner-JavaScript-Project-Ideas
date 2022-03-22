@@ -1,7 +1,10 @@
 import { HandleTimer, ReadTimer } from '@domain/14-Timer'
-import '@styles/14-Timer.css'
+import { createElement } from '@utils/handleElement'
+import '@style/14-Timer.css'
 
 export default function Timer({ targetEl }) {
+  const timerEl = createElement()
+
   this.state = {
     startTimer: false,
     time: 0,
@@ -33,7 +36,7 @@ export default function Timer({ targetEl }) {
   })
 
   const readTimer = new ReadTimer({
-    targetEl,
+    targetEl: timerEl,
     initialState: {
       time: this.state.time,
     },
@@ -47,4 +50,6 @@ export default function Timer({ targetEl }) {
       })
     },
   })
+
+  targetEl.append(timerEl)
 }

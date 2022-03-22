@@ -1,9 +1,10 @@
 import { AddList, ReadList, RemoveList } from '@domain/09-GroceryList'
-import '@styles/09-GroceryList.css'
+import { createElement } from '@utils/handleElement'
+import '@style/09-GroceryList.css'
 
 export default function GroceryList({ targetEl }) {
-  const containerEl = document.createElement('div')
-  containerEl.className = 'container'
+  const groceryListEl = createElement()
+  const containerEl = createElement('div', 'container')
 
   this.state = {
     groceryList: [],
@@ -37,5 +38,6 @@ export default function GroceryList({ targetEl }) {
     initialState: this.state.groceryList,
   })
 
-  targetEl.append(containerEl)
+  groceryListEl.append(containerEl)
+  targetEl.append(groceryListEl)
 }

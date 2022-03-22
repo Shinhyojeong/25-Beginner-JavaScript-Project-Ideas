@@ -1,8 +1,11 @@
 import { Button } from '@base'
 import { Container } from '@domain/02-HexColors'
-import '@styles/02-HexColors.css'
+import { createElement } from '@utils/handleElement'
+import '@style/02-HexColors.css'
 
 export default function HexColors({ targetEl }) {
+  const hexColorsEl = createElement()
+
   this.state = {
     startColor: 'white',
     endColor: 'white',
@@ -14,16 +17,18 @@ export default function HexColors({ targetEl }) {
   }
 
   const container = new Container({
-    targetEl,
+    targetEl: hexColorsEl,
     initialState: {
       ...this.state,
     },
   })
 
   new Button({
-    targetEl,
+    targetEl: hexColorsEl,
     onClick: (colors) => {
       this.setState(colors)
     },
   })
+
+  targetEl.append(hexColorsEl)
 }

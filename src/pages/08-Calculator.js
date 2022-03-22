@@ -1,10 +1,10 @@
 import { CalculatorBtns, ReadCalculation } from '@domain/08-Calculator'
-import '@styles/08-Calculator.css'
+import { createElement } from '@utils/handleElement'
+import '@style/08-Calculator.css'
 
 export default function Calculator({ targetEl }) {
-  const containerEl = document.createElement('div')
-  containerEl.className = 'container'
-  targetEl.append(containerEl)
+  const calculatorEl = createElement()
+  const containerEl = createElement('div', 'container')
 
   this.state = {
     calculation: 0,
@@ -47,4 +47,7 @@ export default function Calculator({ targetEl }) {
       })
     },
   })
+
+  calculatorEl.append(containerEl)
+  targetEl.append(calculatorEl)
 }

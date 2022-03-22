@@ -1,10 +1,11 @@
 import { Text } from '@base'
 import { CardList } from '@domain/18-SquareCards'
-import { CARD_LIST_DATA } from '@data/CardList.js'
+import { CARD_LIST_DATA } from '@data/dummy/CardList.js'
 import { createElement } from '@utils/handleElement'
-import '@styles/18-SquareCards.css'
+import '@style/18-SquareCards.css'
 
 export default function SquareCards({ targetEl }) {
+  const squareCardsEl = createElement()
   const containerEl = createElement('div', 'container')
 
   this.state = {
@@ -25,5 +26,6 @@ export default function SquareCards({ targetEl }) {
     initialState: this.state.cardList,
   })
 
-  targetEl.append(containerEl)
+  squareCardsEl.append(containerEl)
+  targetEl.append(squareCardsEl)
 }

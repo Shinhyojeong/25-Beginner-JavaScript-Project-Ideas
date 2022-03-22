@@ -1,11 +1,12 @@
-import { InputInformation, Toast } from '@domain/10-TipCalculator'
-import '@styles/10-TipCalculator.css'
+import { InputInformation } from '@domain/10-TipCalculator'
+import { Toast } from '@domain'
+import { createElement } from '@utils/handleElement'
+import '@style/10-TipCalculator.css'
 
 export default function TipCalculator({ targetEl }) {
-  const containerEl = document.createElement('div')
-  containerEl.className = 'container'
+  const tipCalculatorEl = createElement()
+  const containerEl = createElement('div', 'container')
   containerEl.innerHTML = '<span class="container-title">Tip Calculator</span>'
-  targetEl.append(containerEl)
 
   this.state = {
     tip: 0,
@@ -28,4 +29,7 @@ export default function TipCalculator({ targetEl }) {
     targetEl,
     initialState: this.state.tip,
   })
+
+  tipCalculatorEl.append(containerEl)
+  targetEl.append(tipCalculatorEl)
 }

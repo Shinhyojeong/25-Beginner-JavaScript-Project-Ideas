@@ -4,9 +4,12 @@ import {
   CreateQuiz,
   ResultCard,
 } from '@domain/22-QuizPro'
+import { createElement } from '@utils/handleElement'
 import { checkResult } from '@utils/handleQuizData'
 
 export default function QuizPro({ targetEl }) {
+  const quizProEl = createElement()
+
   const initialState = {
     quizList: [],
     addMore: true,
@@ -40,11 +43,11 @@ export default function QuizPro({ targetEl }) {
   }
 
   new Header({
-    targetEl,
+    targetEl: quizProEl,
   })
 
   new CreateQuiz({
-    targetEl,
+    targetEl: quizProEl,
     initialState: {
       numberOfInput: 4,
       title: 'Question',
@@ -68,7 +71,7 @@ export default function QuizPro({ targetEl }) {
   })
 
   const quizCardList = new QuizCardList({
-    targetEl,
+    targetEl: quizProEl,
     initialState: {
       quizList: this.state.quizList,
       addMore: this.state.addMore,
@@ -86,11 +89,13 @@ export default function QuizPro({ targetEl }) {
   })
 
   const resultCard = new ResultCard({
-    targetEl,
+    targetEl: quizProEl,
     initialState: {
       resultList: this.state.resultList,
       elClassName: 'result-card',
       isSubmit: this.state.isSubmit,
     },
   })
+
+  targetEl.append(quizProEl)
 }

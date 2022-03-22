@@ -1,12 +1,11 @@
 import { Header, AnswerCardList, ReadMathQuestion } from '@domain/15-Math'
-import {
-  derivingCorrectAnswer,
-  randomAnswerArray,
-  randomState,
-} from '@utils/makeRandomNum.js'
-import { operaotrInfo } from '@data/operatorInfo'
+import { derivingCorrectAnswer, randomState } from '@utils/makeRandomNum.js'
+import { createElement } from '@utils/handleElement'
+import { operaotrInfo } from '@data/dummy/operatorInfo'
 
 export default function Math({ targetEl }) {
+  const mathEl = createElement()
+
   const initialState = derivingCorrectAnswer('+')
 
   this.state = randomState('+')
@@ -23,7 +22,7 @@ export default function Math({ targetEl }) {
   }
 
   new Header({
-    targetEl,
+    targetEl: mathEl,
     initialState: operaotrInfo,
     onClick: (value) => {
       this.setState({
@@ -34,7 +33,7 @@ export default function Math({ targetEl }) {
   })
 
   const readMathQuestion = new ReadMathQuestion({
-    targetEl,
+    targetEl: mathEl,
     initialState: {
       firstNum: this.state.firstNum,
       secondNum: this.state.secondNum,
@@ -43,7 +42,7 @@ export default function Math({ targetEl }) {
   })
 
   const answerCardList = new AnswerCardList({
-    targetEl,
+    targetEl: mathEl,
     initialState: this.state.answerList,
     handleCheckAnswer: (value) => {
       const { correctAnswer, operator } = this.state
@@ -56,4 +55,6 @@ export default function Math({ targetEl }) {
       }
     },
   })
+
+  targetEl.append(mathEl)
 }

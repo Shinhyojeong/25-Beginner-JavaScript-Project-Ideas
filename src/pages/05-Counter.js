@@ -1,10 +1,10 @@
 import { ReadNumber, CountingBtns } from '@domain/05-Counter'
-import '@styles/05-Counter.css'
+import { createElement } from '@utils/handleElement'
+import '@style/05-Counter.css'
 
 export default function Counter({ targetEl }) {
-  const containerEl = document.createElement('div')
-  containerEl.className = 'container'
-  targetEl.append(containerEl)
+  const counterEl = createElement()
+  const containerEl = createElement('div', container)
 
   this.state = {
     counter: 0,
@@ -36,4 +36,7 @@ export default function Counter({ targetEl }) {
       }
     },
   })
+
+  counterEl.append(containerEl)
+  targetEl.append(counterEl)
 }

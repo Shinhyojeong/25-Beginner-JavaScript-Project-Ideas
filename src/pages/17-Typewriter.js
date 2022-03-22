@@ -1,7 +1,10 @@
 import { TypingQuote } from '@domain/17-Typewriter'
 import { request } from '@api/api.js'
+import { createElement } from '@utils/handleElement'
 
 export default function Typewriter({ targetEl }) {
+  const typeWriterEl = createElement()
+
   this.state = {
     quote:
       'Always be a first-rate version of yourself, instead of a second-rate version of somebody else',
@@ -13,7 +16,7 @@ export default function Typewriter({ targetEl }) {
   }
 
   const typingQuote = new TypingQuote({
-    targetEl,
+    targetEl: typeWriterEl,
     initialState: this.state,
     nextQuote: async () => {
       const data = await request()
@@ -24,4 +27,6 @@ export default function Typewriter({ targetEl }) {
       })
     },
   })
+
+  targetEl.append(typeWriterEl)
 }

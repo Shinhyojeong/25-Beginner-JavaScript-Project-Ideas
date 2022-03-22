@@ -3,15 +3,15 @@ import {
   LoadImage,
   SlidePaging,
 } from '@domain/06-ImageCarousel'
-import '@styles/06-ImageCarousel.css'
+import { createElement } from '@utils/handleElement'
+import '@style/06-ImageCarousel.css'
 
 const START_SLIDE_NUMBER = 1
 const END_SLIDE_NUMBER = 4
 
 export default function ImageCarousel({ targetEl }) {
-  const container = document.createElement('div')
-  container.className = 'container'
-  targetEl.append(container)
+  const imageCarouselEl = createElement()
+  const container = createElement('div', 'container')
 
   this.state = {
     slideNumber: START_SLIDE_NUMBER,
@@ -51,16 +51,18 @@ export default function ImageCarousel({ targetEl }) {
       this.setState({
         slideNumber: nextSlideNumber,
       })
-      console.log(this.state.slideNumber)
     },
   })
 
-  const slidePaging = new SlidePaging({
-    targetEl,
-    initialState: {
-      slideNumber: this.state.slideNumber,
-      startSlideNumber: START_SLIDE_NUMBER,
-      endSlideNumber: END_SLIDE_NUMBER,
-    },
-  })
+  // const slidePaging = new SlidePaging({
+  //   targetEl,
+  //   initialState: {
+  //     slideNumber: this.state.slideNumber,
+  //     startSlideNumber: START_SLIDE_NUMBER,
+  //     endSlideNumber: END_SLIDE_NUMBER,
+  //   },
+  // })
+
+  imageCarouselEl.append(container)
+  targetEl.append(imageCarouselEl)
 }

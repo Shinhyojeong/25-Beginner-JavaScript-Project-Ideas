@@ -1,8 +1,11 @@
 import { Button } from '@base'
 import { QuoteBox } from '@domain/03-RandomQuoteGenerator'
-import '@styles/03-RandomQuoteGenerator.css'
+import { createElement } from '@utils/handleElement'
+import '@style/03-RandomQuoteGenerator.css'
 
 export default function RandomQuoteGenerator({ targetEl }) {
+  const randomQuoteGeneratorEl = createElement()
+
   this.state = {
     quote: null,
   }
@@ -13,16 +16,18 @@ export default function RandomQuoteGenerator({ targetEl }) {
   }
 
   const quoteBox = new QuoteBox({
-    targetEl,
+    targetEl: randomQuoteGeneratorEl,
     initialState: this.state,
   })
 
   new Button({
-    targetEl,
+    targetEl: randomQuoteGeneratorEl,
     onClick: (quote) => {
       this.setState({
         quote,
       })
     },
   })
+
+  targetEl.append(randomQuoteGeneratorEl)
 }

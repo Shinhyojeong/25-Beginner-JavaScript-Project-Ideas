@@ -1,7 +1,10 @@
 import { Header, ReadImageList } from '@domain/16-UnsplashAPI'
 import { fetchUnsplashApi } from '@utils/handleUnsplashData.js'
+import { createElement } from '@utils/handleElement'
 
 export default function UnsplashApi({ targetEl }) {
+  const unsplashApiEl = createElement()
+
   this.state = {
     searchTerm: '',
     searchResult: '',
@@ -13,7 +16,7 @@ export default function UnsplashApi({ targetEl }) {
   }
 
   new Header({
-    targetEl,
+    targetEl: unsplashApiEl,
     onSubmit: async (searchTerm) => {
       const searchResult = await fetchUnsplashApi(searchTerm)
       this.setState({
@@ -25,7 +28,9 @@ export default function UnsplashApi({ targetEl }) {
   })
 
   const readImageList = new ReadImageList({
-    targetEl,
+    targetEl: unsplashApiEl,
     initialState: {},
   })
+
+  targetEl.append(unsplashApiEl)
 }

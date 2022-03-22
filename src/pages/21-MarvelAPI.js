@@ -1,12 +1,15 @@
-import { Header } from '@doamin/21-MarvelAPI'
-import { DEFAULT_RESULT } from '@data/defaultValue'
+import { Header } from '@domain/21-MarvelApi'
+import { DEFAULT_RESULT } from '@data/dummy/defaultValue'
+import { createElement } from '@utils/handleElement'
 
 export default function MarvelApi({ targetEl }) {
+  const marvelApi = createElement()
+
   new Header({
-    targetEl,
+    targetEl: marvelApi,
   })
   new Section({
-    targetEl,
+    targetEl: marvelApi,
     initialState: {
       elClassName: 'wrapper character',
       searchList: [
@@ -26,4 +29,6 @@ export default function MarvelApi({ targetEl }) {
       defaultResult: DEFAULT_RESULT,
     },
   })
+
+  targetEl.append(marvelApi)
 }

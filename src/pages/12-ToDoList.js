@@ -1,6 +1,9 @@
 import { AddTodo, ReadTodoList } from '@domain/12-ToDoList'
+import { createElement } from '@utils/handleElement'
 
 export default function ToDoList({ targetEl }) {
+  const toDoListEl = createElement()
+
   this.state = {
     todoList: [],
     lastId: 0,
@@ -12,7 +15,7 @@ export default function ToDoList({ targetEl }) {
   }
 
   new AddTodo({
-    targetEl,
+    targetEl: toDoListEl,
     onSubmit: (todoText) => {
       const { todoList, lastId } = this.state
 
@@ -30,7 +33,7 @@ export default function ToDoList({ targetEl }) {
   })
 
   const readTodoList = new ReadTodoList({
-    targetEl,
+    targetEl: toDoListEl,
     initialState: this.state.todoList,
     onRemove: (id) => {
       const newTodoList = this.state.todoList.filter((todo) => todo.id !== id)
@@ -41,4 +44,6 @@ export default function ToDoList({ targetEl }) {
       })
     },
   })
+
+  targetEl.append(toDoListEl)
 }
