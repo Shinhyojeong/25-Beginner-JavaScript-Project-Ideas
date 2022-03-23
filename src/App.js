@@ -1,29 +1,16 @@
-import { CardList } from '@domain/18-SquareCards'
-import { CARD_LIST_DATA } from '@data/CardList'
-import { createElement } from '@utils/handleElement'
-import { Text } from '@base'
+import { initRouter } from '@utils/routeEvent'
+import { appendPage } from '@utils/handlePage'
 import '@style/index.css'
 
 export default function App({ targetEl }) {
-  const containerEl = createElement('div', 'container')
-
-  this.state = {
-    cardList: CARD_LIST_DATA,
+  this.route = () => {
+    appendPage(targetEl)
   }
 
-  new Text({
-    targetEl: containerEl,
-    initialState: {
-      elType: 'div',
-      elClassName: 'title',
-      content: '25 Vanilla JavaScript Project',
-    },
-  })
+  this.route()
+  initRouter(() => this.route())
 
-  new CardList({
-    targetEl: containerEl,
-    initialState: this.state.cardList,
+  window.addEventListener('popstate', () => {
+    this.route()
   })
-
-  targetEl.append(containerEl)
 }
